@@ -13,25 +13,25 @@
 	"incompatibilities": [],
 	"load_before": [],
 	"mod_meta": {
-		"date_added": 0,
-		"date_updated": 0,
-		"file_id": 0,
-		"game_version": "",
-		"mod_id": 0,
-		"name_id": "",
+		"date_added": 1787579319,
+		"date_updated": 1787579319,
+		"file_id": 8133730,
+		"game_version": "1.2.4",
+		"mod_id": 6332638,
+		"name_id": "dgco-reag",
 		"revision": 1,
-		"user_id": 0,
-		"username": ""
+		"user_id": 61561194,
+		"username": "Mr_Reag"
 	},
 	"name": "CrisisCoreCatalogEvolved",
 	"namespace": "Reag",
 	"optional_dependencies": [],
 	"requires_restart": false,
-	"summary": "A partial implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release: https://esbionarshadow.itch.io/gms-crisis-catalogue",
+	"summary": "A partial implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release, which can be found at itch.io",
 	"tags": [
 		"Systems and weapons"
 	],
 	"title": "GMS Crisis Core Catalog Evolved",
 	"version_number": "0.1.0",
-	"website_url": ""
+	"website_url": "https://esbionarshadow.itch.io/gms-crisis-catalogue"
 }
