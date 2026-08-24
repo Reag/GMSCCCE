@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://dllyuudbtdsgf"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_yof2h"]
+[ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_basci"]
+[ext_resource type="Texture2D" uid="uid://dx1itd6i5qtrg" path="res://assets/icons/actions/weapons/mw_nexus_hunter_killer.svg" id="3_basci"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_mo7iv"]
+[ext_resource type="Script" uid="uid://c0yv6pnw2be6l" path="res://engine/character/gear_action/resources/range_pattern.gd" id="5_6b7c4"]
+[ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="5_6mv8v"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="6_2h2b0"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="7_yjmvs"]
+
+[sub_resource type="Resource" id="Resource_6kd4r"]
+script = ExtResource("5_6b7c4")
+pattern = 2
+value = 5
+metadata/_custom_type_script = "uid://c0yv6pnw2be6l"
+
+[sub_resource type="Resource" id="Resource_m0jdl"]
+script = ExtResource("5_6mv8v")
+damage_type = 2
+damage_dice = "1d3+2"
+weapon_type = 5
+threat = 0
+tags = Array[StringName]([&"smart"])
+range_pattern = SubResource("Resource_6kd4r")
+icon_override = ExtResource("3_basci")
+
+[resource]
+script = ExtResource("7_yjmvs")
+actions = Array[ExtResource("1_yof2h")]([SubResource("Resource_m0jdl")])

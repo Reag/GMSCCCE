@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://cgce6etcx635c"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_nghi6"]
+[ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_milph"]
+[ext_resource type="Texture2D" uid="uid://dvn0pdosa87bl" path="res://assets/icons/actions/weapons/mw_kinetic_hammer.svg" id="3_nghi6"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_nfp6l"]
+[ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="5_7xi6a"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="6_fk8cp"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="7_hr8ja"]
+
+[sub_resource type="Resource" id="Resource_m0jdl"]
+script = ExtResource("5_7xi6a")
+damage_type = 2
+damage_dice = "2d6+5"
+weapon_size = 3
+weapon_type = 2
+aim_range = 0
+threat = 2
+tags = Array[StringName]([&"knockback", &"reliable"])
+knockback = "4"
+reliable_damage = "6"
+icon_override = ExtResource("3_nghi6")
+
+[resource]
+script = ExtResource("7_hr8ja")
+actions = Array[ExtResource("1_nghi6")]([SubResource("Resource_m0jdl")])

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://kmakn8tu508q"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_cbli3"]
+[ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_1mw5l"]
+[ext_resource type="Texture2D" uid="uid://cmbdlbayiatx1" path="res://assets/icons/actions/weapons/mw_pinaka_missiles.svg" id="3_cbli3"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_delww"]
+[ext_resource type="Script" uid="uid://c0yv6pnw2be6l" path="res://engine/character/gear_action/resources/range_pattern.gd" id="5_a53fn"]
+[ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="6_3r023"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="7_8mifd"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="8_8bwo2"]
+
+[sub_resource type="Resource" id="Resource_qgoi1"]
+script = ExtResource("5_a53fn")
+pattern = 3
+value = 5
+metadata/_custom_type_script = "uid://c0yv6pnw2be6l"
+
+[sub_resource type="Resource" id="Resource_m0jdl"]
+script = ExtResource("6_3r023")
+damage_type = 2
+damage_dice = "2d6+2"
+weapon_size = 3
+weapon_type = 4
+threat = 0
+tags = Array[StringName]([&"knockback", &"reliable"])
+knockback = "3"
+reliable_damage = "4"
+range_pattern = SubResource("Resource_qgoi1")
+self_heat_dice = "2"
+icon_override = ExtResource("3_cbli3")
+
+[resource]
+script = ExtResource("8_8bwo2")
+actions = Array[ExtResource("1_cbli3")]([SubResource("Resource_m0jdl")])
