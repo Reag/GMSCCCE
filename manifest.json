@@ -1,0 +1,35 @@
+{
+	"authors": [
+		"Mr_Reag",
+		"Original work by Maria Lopez"
+	],
+	"compatible_game_version": [
+		"1.2.4"
+	],
+	"config_schema": {},
+	"dependencies": [],
+	"description": "",
+	"image": "thumbnail.png",
+	"incompatibilities": [],
+	"load_before": [],
+	"mod_meta": {
+		"date_added": 0,
+		"date_updated": 0,
+		"file_id": 0,
+		"game_version": "",
+		"mod_id": 0,
+		"name_id": "",
+		"revision": 1,
+		"user_id": 0,
+		"username": ""
+	},
+	"name": "CrisisCoreCatalogEvolved",
+	"namespace": "Reag",
+	"optional_dependencies": [],
+	"requires_restart": false,
+	"summary": "A partial implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release: https://esbionarshadow.itch.io/gms-crisis-catalogue",
+	"tags": [],
+	"title": "GMS Crisis Core Catalog Evolved",
+	"version_number": "0.0.1",
+	"website_url": ""
+}
