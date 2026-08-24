@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://dveceadunu47g"]
+
+[ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="1_po2mm"]
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_t0wuo"]
+[ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_7mqpp"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="2_74oye"]
+[ext_resource type="Texture2D" uid="uid://cqqxxxelmo5w0" path="res://assets/icons/actions/weapons/mw_oracle_lmg_i.svg" id="3_yjl30"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_1qdj1"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="6_xj6l3"]
+
+[sub_resource type="Resource" id="Resource_m0jdl"]
+script = ExtResource("1_po2mm")
+damage_dice = "1d3"
+weapon_size = 0
+aim_range = 10
+threat = 0
+tags = Array[StringName]([&"loading", &"ap"])
+icon_override = ExtResource("3_yjl30")
+
+[resource]
+script = ExtResource("2_74oye")
+actions = Array[ExtResource("1_t0wuo")]([SubResource("Resource_m0jdl")])

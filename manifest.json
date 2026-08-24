@@ -28,7 +28,9 @@
 	"optional_dependencies": [],
 	"requires_restart": false,
 	"summary": "A partial implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release: https://esbionarshadow.itch.io/gms-crisis-catalogue",
-	"tags": [],
+	"tags": [
+		"Systems and weapons"
+	],
 	"title": "GMS Crisis Core Catalog Evolved",
 	"version_number": "0.0.1",
 	"website_url": ""

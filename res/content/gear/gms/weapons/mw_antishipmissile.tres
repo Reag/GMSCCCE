@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://ctdbk8xtlv2lo"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_ns6de"]
+[ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_gdup8"]
+[ext_resource type="Texture2D" uid="uid://c6naw1ltteid1" path="res://assets/icons/actions/weapons/mw_shatterhead_colony_missiles.svg" id="3_ns6de"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_pt4g6"]
+[ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="5_xh4r5"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="6_7vsuk"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="7_aiai1"]
+
+[sub_resource type="Resource" id="Resource_m0jdl"]
+script = ExtResource("5_xh4r5")
+damage_type = 2
+damage_dice = "2d6"
+weapon_size = 2
+weapon_type = 4
+aim_range = 15
+threat = 0
+tags = Array[StringName]([&"loading", &"ap", &"arcing"])
+icon_override = ExtResource("3_ns6de")
+
+[resource]
+script = ExtResource("7_aiai1")
+actions = Array[ExtResource("1_ns6de")]([SubResource("Resource_m0jdl")])
