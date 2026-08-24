@@ -14,5 +14,7 @@ func modify_resource(resource:Resource) -> Resource:
 	
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_autocannon.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_antishipmissile.tres'))
+	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_nexusapexhunter.tres'))
+	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_heavyslugshotgun.tres'))
 	
 	return resource
