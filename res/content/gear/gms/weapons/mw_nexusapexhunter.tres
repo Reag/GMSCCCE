@@ -14,7 +14,6 @@ damage_dice = "2d6"
 weapon_size = 2
 weapon_type = 5
 aim_range = 10
-threat = 0
 tags = Array[StringName]([&"smart"])
 self_heat_dice = "1"
 icon_override = ExtResource("3_3c0n0")

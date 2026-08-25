@@ -13,7 +13,6 @@ script = ExtResource("1_po2mm")
 damage_dice = "1d3"
 weapon_size = 0
 aim_range = 10
-threat = 0
 tags = Array[StringName]([&"loading", &"ap"])
 icon_override = ExtResource("3_yjl30")
 

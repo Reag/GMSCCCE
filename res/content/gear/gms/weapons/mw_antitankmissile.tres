@@ -14,7 +14,6 @@ damage_type = 2
 damage_dice = "1d3+2"
 weapon_type = 4
 aim_range = 8
-threat = 0
 tags = Array[StringName]([&"arcing", &"ap"])
 self_heat_dice = "1"
 icon_override = ExtResource("3_cxar6")

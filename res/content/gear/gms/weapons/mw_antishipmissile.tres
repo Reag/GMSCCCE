@@ -15,7 +15,6 @@ damage_dice = "2d6"
 weapon_size = 2
 weapon_type = 4
 aim_range = 15
-threat = 0
 tags = Array[StringName]([&"loading", &"ap", &"arcing"])
 icon_override = ExtResource("3_ns6de")
 

@@ -14,7 +14,6 @@ damage_dice = "1d6+3"
 weapon_size = 2
 weapon_type = 0
 aim_range = 7
-threat = 0
 tags = Array[StringName]([&"ap", &"reliable"])
 reliable_damage = "2"
 icon_override = ExtResource("3_r7wj3")

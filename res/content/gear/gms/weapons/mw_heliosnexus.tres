@@ -20,7 +20,6 @@ script = ExtResource("5_6mv8v")
 damage_type = 2
 damage_dice = "1d3+2"
 weapon_type = 5
-threat = 0
 tags = Array[StringName]([&"smart"])
 range_pattern = SubResource("Resource_6kd4r")
 icon_override = ExtResource("3_basci")

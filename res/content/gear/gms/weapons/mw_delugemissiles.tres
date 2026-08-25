@@ -21,7 +21,6 @@ damage_type = 2
 damage_dice = "2d6+2"
 weapon_size = 3
 weapon_type = 4
-threat = 0
 tags = Array[StringName]([&"knockback", &"reliable"])
 knockback = "3"
 reliable_damage = "4"
