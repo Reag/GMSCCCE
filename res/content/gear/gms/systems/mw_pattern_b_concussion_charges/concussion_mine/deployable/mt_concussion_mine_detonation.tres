@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://dcli3a8v1aj6d"]
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://c5ewm8jdai1uq"]
 
-[ext_resource type="Resource" uid="uid://btmivgg771lkh" path="res://content/gear/gms/systems/ms_pattern_b_hex_charges/explosive_mine/deployable/action_hex_mine_detonation.tres" id="1_fsau2"]
 [ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_wj5il"]
+[ext_resource type="Resource" uid="uid://cs1htyh48jxao" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/concussion_mine/deployable/action_concussion_mine_detonation.tres" id="2_5qskw"]
 [ext_resource type="Resource" uid="uid://h2r5bsdwnhme" path="res://content/gear/shared/mine/action_mine_arm.tres" id="2_ro6j1"]
 [ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="2_we277"]
 [ext_resource type="Resource" uid="uid://xs6lvqx632yu" path="res://content/gear/shared/mine/action_mine_trigger.tres" id="3_kiabf"]
@@ -11,6 +11,6 @@
 
 [resource]
 script = ExtResource("2_we277")
-actions = Array[ExtResource("1_wj5il")]([ExtResource("1_fsau2"), ExtResource("2_ro6j1"), ExtResource("3_kiabf")])
+actions = Array[ExtResource("1_wj5il")]([ExtResource("2_5qskw"), ExtResource("2_ro6j1"), ExtResource("3_kiabf")])
 passives = Array[ExtResource("5_q5o05")]([ExtResource("4_mxwer"), ExtResource("7_uidi8")])
 is_trait = true

@@ -1,23 +1,23 @@
-[gd_resource type="Resource" script_class="ActionSystemDeploy" format=3 uid="uid://b4c1mi1k0phpe"]
+[gd_resource type="Resource" script_class="ActionSystemDeploy" format=3 uid="uid://c6sa1i8f2pmfw"]
 
-[ext_resource type="Resource" uid="uid://m0ojfa31hyvs" path="res://content/gear/gms/systems/ms_pattern_b_hex_charges/explosive_mine/deployable/dep_hex_mine.tres" id="1_llx83"]
-[ext_resource type="Texture2D" uid="uid://brk6krksi1x75" path="res://assets/icons/actions/systems/ms_pattern_b_hex_charges/action_hex_mine.svg" id="2_ktjip"]
-[ext_resource type="Script" uid="uid://2wdyuf507vdl" path="res://engine/character/gear_action/archtypes/action_system_deploy.gd" id="2_kvp2u"]
-[ext_resource type="Texture2D" uid="uid://m7th0lci63tc" path="res://assets/frames/deployables/mine.png" id="4_w7fgr"]
-[ext_resource type="Script" uid="uid://df1yicp7kbf3x" path="res://engine/character/gear_action/resources/target_requirements.gd" id="5_0d2gp"]
+[ext_resource type="Resource" uid="uid://ihqrssopmvwn" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/concussion_mine/deployable/dep_concussion_mine.tres" id="1_mhwfr"]
+[ext_resource type="Texture2D" uid="uid://brk6krksi1x75" path="res://assets/icons/actions/systems/ms_pattern_b_hex_charges/action_hex_mine.svg" id="2_ljnn2"]
+[ext_resource type="Script" uid="uid://2wdyuf507vdl" path="res://engine/character/gear_action/archtypes/action_system_deploy.gd" id="3_kg865"]
+[ext_resource type="Texture2D" uid="uid://m7th0lci63tc" path="res://assets/frames/deployables/mine.png" id="4_i3t4e"]
+[ext_resource type="Script" uid="uid://df1yicp7kbf3x" path="res://engine/character/gear_action/resources/target_requirements.gd" id="5_uuft6"]
 
 [sub_resource type="Resource" id="Resource_brtct"]
-script = ExtResource("5_0d2gp")
-preview_sprite = ExtResource("4_w7fgr")
+script = ExtResource("5_uuft6")
+preview_sprite = ExtResource("4_i3t4e")
 can_target_empty_tiles = true
 can_target_units = false
 requires_free_space = true
 
 [resource]
-script = ExtResource("2_kvp2u")
-deployable_frame = ExtResource("1_llx83")
+script = ExtResource("3_kg865")
+deployable_frame = ExtResource("1_mhwfr")
 deploy_range = 1
 action_type = 1
 target_requirements_override = SubResource("Resource_brtct")
-usage_group = &"hex_charges"
-icon_override = ExtResource("2_ktjip")
+usage_group = &"concussion_charges"
+icon_override = ExtResource("2_ljnn2")

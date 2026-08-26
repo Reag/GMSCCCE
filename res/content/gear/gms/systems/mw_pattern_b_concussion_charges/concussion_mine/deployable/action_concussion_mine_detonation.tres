@@ -1,12 +1,13 @@
-[gd_resource type="Resource" format=3 uid="uid://btmivgg771lkh"]
+[gd_resource type="Resource" format=3 uid="uid://cs1htyh48jxao"]
 
-[ext_resource type="Script" uid="uid://cnga3pvf4phob" path="res://content/gear/gms/systems/ms_pattern_b_hex_charges/explosive_mine/deployable/action_hex_mine_detonation.gd" id="1_5uhry"]
-[ext_resource type="PackedScene" uid="uid://b66gj58212165" path="res://content/fx_groups/weapons/aoe/fxg_aoe_explosive.tscn" id="1_cis45"]
-[ext_resource type="PackedScene" uid="uid://b5svma8gdtmfd" path="res://content/fx_groups/weapons/grenades/fxg_grenade_terminal.tscn" id="2_l51x3"]
+[ext_resource type="PackedScene" uid="uid://b66gj58212165" path="res://content/fx_groups/weapons/aoe/fxg_aoe_explosive.tscn" id="1_blbol"]
+[ext_resource type="PackedScene" uid="uid://b5svma8gdtmfd" path="res://content/fx_groups/weapons/grenades/fxg_grenade_terminal.tscn" id="2_v43ud"]
+[ext_resource type="Script" uid="uid://d4d8cwxs80ww3" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/concussion_mine/deployable/action_concussion_mine_detonation.gd" id="3_kaof3"]
 
 [resource]
-script = ExtResource("1_5uhry")
+script = ExtResource("3_kaof3")
+detonation_radius = 2
 action_type = 3
-fxg_use = ExtResource("2_l51x3")
-fxg_aoe = ExtResource("1_cis45")
+fxg_use = ExtResource("2_v43ud")
+fxg_aoe = ExtResource("1_blbol")
 starts_hibernating = true

@@ -12,6 +12,7 @@ func sload(file: String):
 func modify_resource(resource:Resource) -> Resource:
 	var license: UnlockTree = resource
 	
+	# Weapons
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_autocannon.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_antishipmissile.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_nexusapexhunter.tres'))
@@ -23,5 +24,8 @@ func modify_resource(resource:Resource) -> Resource:
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_grenadelauncher.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_combatmaul.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/weapons/mw_delugemissiles.tres'))
+	
+	# Systems
+	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/ms_pattern_b_concussion_charges.tres'))
 	
 	return resource
