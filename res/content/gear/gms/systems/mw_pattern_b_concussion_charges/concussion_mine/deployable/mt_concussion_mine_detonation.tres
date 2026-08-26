@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://c5ewm8jdai1uq"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_wj5il"]
+[ext_resource type="Resource" uid="uid://cs1htyh48jxao" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/concussion_mine/deployable/action_concussion_mine_detonation.tres" id="2_5qskw"]
+[ext_resource type="Resource" uid="uid://h2r5bsdwnhme" path="res://content/gear/shared/mine/action_mine_arm.tres" id="2_ro6j1"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="2_we277"]
+[ext_resource type="Resource" uid="uid://xs6lvqx632yu" path="res://content/gear/shared/mine/action_mine_trigger.tres" id="3_kiabf"]
+[ext_resource type="Resource" uid="uid://ci15ddvp3deew" path="res://content/gear/shared/invulnerability/passive_invulnerability.tres" id="4_mxwer"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="5_q5o05"]
+[ext_resource type="Resource" uid="uid://dy2h261hykkw4" path="res://content/gear/shared/mine/passive_mine_knock_into.tres" id="7_uidi8"]
+
+[resource]
+script = ExtResource("2_we277")
+actions = Array[ExtResource("1_wj5il")]([ExtResource("2_5qskw"), ExtResource("2_ro6j1"), ExtResource("3_kiabf")])
+passives = Array[ExtResource("5_q5o05")]([ExtResource("4_mxwer"), ExtResource("7_uidi8")])
+is_trait = true
