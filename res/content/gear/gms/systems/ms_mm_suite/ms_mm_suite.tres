@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://ca00uni42crnn"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_2xfpu"]
+[ext_resource type="Resource" uid="uid://b7wbxx40xafl0" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_mm_suite/ms_mm_suite_action.tres" id="2_ke72v"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="2_qg2oy"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="3_ke72v"]
+[ext_resource type="Texture2D" uid="uid://cq8mnrxradebh" path="res://assets/icons/actions/systems/ms_aegis_shield_generator.svg" id="3_pcia6"]
+
+[resource]
+script = ExtResource("3_ke72v")
+actions = Array[ExtResource("1_2xfpu")]([ExtResource("2_ke72v")])
+sp_cost = 2
+system_tags = 17
+icon_override = ExtResource("3_pcia6")
+metadata/_custom_type_script = "uid://ckrv6mvs5q65e"

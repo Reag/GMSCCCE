@@ -28,5 +28,6 @@ func modify_resource(resource:Resource) -> Resource:
 	# Systems
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_concussion_charges/ms_pattern_b_concussion_charges.tres'))
 	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/ms_pattern_b_shock_charges.tres'))
+	license.rank_1.granted_gear.append(sload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_mm_suite/ms_mm_suite.tres'))
 	
 	return resource
