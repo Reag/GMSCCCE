@@ -1,0 +1,21 @@
+[gd_resource type="Resource" format=3 uid="uid://b7wbxx40xafl0"]
+
+[ext_resource type="Script" uid="uid://cwi0h68162w5x" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_mm_suite/ms_mm_suite_action.gd" id="1_5f5hb"]
+[ext_resource type="Texture2D" uid="uid://cq8mnrxradebh" path="res://assets/icons/actions/systems/ms_aegis_shield_generator.svg" id="1_maleg"]
+[ext_resource type="Script" uid="uid://df1yicp7kbf3x" path="res://engine/character/gear_action/resources/target_requirements.gd" id="2_6wkbb"]
+
+[sub_resource type="Resource" id="Resource_v4ht0"]
+script = ExtResource("2_6wkbb")
+count = 2
+all_targets_required = false
+metadata/_custom_type_script = "uid://df1yicp7kbf3x"
+
+[resource]
+script = ExtResource("1_5f5hb")
+target_range = 99
+target_range_is_sensors = true
+can_target_enemies = false
+action_type = 1
+target_requirements_override = SubResource("Resource_v4ht0")
+icon_override = ExtResource("1_maleg")
+metadata/_custom_type_script = "uid://cm50wdj5g8syg"

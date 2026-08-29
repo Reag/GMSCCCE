@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="Kit" format=3 uid="uid://c1h52lht6bvfa"]
 
-[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_b3xip"]
-[ext_resource type="Resource" uid="uid://deul54vacqp3g" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/shock_mine/deployable/action_shock_mine_detonation.tres" id="2_yaqa8"]
-[ext_resource type="Resource" uid="uid://h2r5bsdwnhme" path="res://content/gear/shared/mine/action_mine_arm.tres" id="3_6ospm"]
-[ext_resource type="Resource" uid="uid://xs6lvqx632yu" path="res://content/gear/shared/mine/action_mine_trigger.tres" id="4_ne4uq"]
-[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="5_ejuqb"]
-[ext_resource type="Resource" uid="uid://ci15ddvp3deew" path="res://content/gear/shared/invulnerability/passive_invulnerability.tres" id="6_q74n8"]
-[ext_resource type="Resource" uid="uid://dy2h261hykkw4" path="res://content/gear/shared/mine/passive_mine_knock_into.tres" id="7_4d46e"]
-[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="8_lwf3n"]
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_d2jyk"]
+[ext_resource type="Resource" uid="uid://deul54vacqp3g" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/shock_mine/deployable/action_shock_mine_detonation.tres" id="2_qf4qu"]
+[ext_resource type="Resource" uid="uid://h2r5bsdwnhme" path="res://content/gear/shared/mine/action_mine_arm.tres" id="3_lsddh"]
+[ext_resource type="Resource" uid="uid://xs6lvqx632yu" path="res://content/gear/shared/mine/action_mine_trigger.tres" id="4_7kdr4"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="5_sdat0"]
+[ext_resource type="Resource" uid="uid://ci15ddvp3deew" path="res://content/gear/shared/invulnerability/passive_invulnerability.tres" id="6_1lheu"]
+[ext_resource type="Resource" uid="uid://dy2h261hykkw4" path="res://content/gear/shared/mine/passive_mine_knock_into.tres" id="7_ofy1w"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="8_60wny"]
 
 [resource]
-script = ExtResource("8_lwf3n")
-actions = Array[ExtResource("1_b3xip")]([ExtResource("2_yaqa8"), ExtResource("3_6ospm"), ExtResource("4_ne4uq")])
-passives = Array[ExtResource("5_ejuqb")]([ExtResource("6_q74n8"), ExtResource("7_4d46e")])
+script = ExtResource("8_60wny")
+actions = Array[ExtResource("1_d2jyk")]([ExtResource("2_qf4qu"), ExtResource("3_lsddh"), ExtResource("4_7kdr4")])
+passives = Array[ExtResource("5_sdat0")]([ExtResource("6_1lheu"), ExtResource("7_ofy1w")])
 is_trait = true
