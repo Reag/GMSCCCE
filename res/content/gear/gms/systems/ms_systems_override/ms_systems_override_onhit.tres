@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="OnHitEffect" format=3 uid="uid://bpapokxhynkyo"]
+
+[ext_resource type="Script" uid="uid://cqrqkdgcf8mti" path="res://engine/character/buff/buff.gd" id="1_i3o6s"]
+[ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="2_kau1a"]
+
+[resource]
+script = ExtResource("2_kau1a")
+statuses = Array[StringName]([&"impaired", &"immobilized"])
+metadata/_custom_type_script = "uid://d2nldg6e3doqd"

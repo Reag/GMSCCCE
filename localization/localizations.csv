@@ -29,3 +29,7 @@ gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
 gear.ms_mm_suite.name,Micro-Maintance Suite
 gear.ms_mm_suite.effect,Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|.
 gear.ms_mm_suite.flavor,"The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components."
+
+gear.ms_systems_override.name,Systems Override
+gear.ms_systems_override.effect,"Make a |tech attack| against a hostile character within |sensors| and |line of sight|. On a success, the target takes |4 heat| and is |impaired| and |immobilized| until the end of their next turn"
+gear.ms_systems_override.flavor,"GMS wartime electronic assault packages typically focus on exploiting predicted and cataloged back doors common in mech systems."
