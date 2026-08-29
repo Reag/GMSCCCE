@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("5_ei0yf")
 action_type = 2
+is_invade = false
 on_hit_effects = Array[ExtResource("2_vbo0d")]([ExtResource("4_sx7ak")])
 icon_override = ExtResource("2_sx7ak")
 metadata/_custom_type_script = "uid://bmkbhm13soupd"
