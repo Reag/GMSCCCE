@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://do11t1sjk0poc"]
+
+[ext_resource type="PackedScene" uid="uid://br4ox3luglhn7" path="res://content/fx_groups/weapons/grenades/fxg_grenade.tscn" id="1_s8smv"]
+[ext_resource type="Texture2D" uid="uid://c64eb6lf67c4d" path="res://assets/icons/actions/systems/ms_pattern_b_hex_charges/action_frag_grenade.svg" id="2_n2w4s"]
+[ext_resource type="Script" uid="uid://dwwgg1vef1dug" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/shock_grenade/action_shock_grenade.gd" id="3_ddqhc"]
+
+[resource]
+script = ExtResource("3_ddqhc")
+action_type = 1
+fxg_use = ExtResource("1_s8smv")
+metatags = Array[StringName]([&"grenade"])
+usage_group = &"shock_charges"
+icon_override = ExtResource("2_n2w4s")

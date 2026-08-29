@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="2_5eigg"]
 [ext_resource type="Script" uid="uid://daycu0mqh1rbq" path="res://engine/character/unit_core/frame.gd" id="3_nfvwf"]
 [ext_resource type="Texture2D" uid="uid://m7th0lci63tc" path="res://assets/frames/deployables/mine.png" id="4_q0gvl"]
-[ext_resource type="Resource" uid="uid://c5ewm8jdai1uq" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/mw_pattern_b_concussion_charges/concussion_mine/deployable/mt_concussion_mine_detonation.tres" id="5_anv14"]
+[ext_resource type="Resource" uid="uid://c5ewm8jdai1uq" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_concussion_charges/concussion_mine/deployable/mt_concussion_mine_detonation.tres" id="5_anv14"]
 [ext_resource type="Resource" uid="uid://d0o7enanuy6q2" path="res://content/gear/shared/statblock_zero.tres" id="5_m4eja"]
 
 [resource]
