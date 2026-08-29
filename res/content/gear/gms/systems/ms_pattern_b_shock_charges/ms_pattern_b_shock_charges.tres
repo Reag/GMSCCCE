@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://dcwkgo7lymweo"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_igiv6"]
+[ext_resource type="Resource" uid="uid://do11t1sjk0poc" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/shock_grenade/action_shock_grenade.tres" id="2_wp73b"]
+[ext_resource type="Resource" uid="uid://1mmycrb76whj" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_pattern_b_shock_charges/shock_mine/action_shock_mine.tres" id="3_gkuli"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="4_0mcgr"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="5_hwiux"]
+
+[resource]
+script = ExtResource("5_hwiux")
+actions = Array[ExtResource("1_igiv6")]([ExtResource("2_wp73b"), ExtResource("3_gkuli")])
+sp_cost = 2
+system_tags = 1
+charges_max = 3

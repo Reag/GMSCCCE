@@ -11,9 +11,17 @@ gear.mw_fraglauncher.name,Fragmentation Launcher
 gear.mw_grenadelauncher.name,Grenade Launcher
 gear.mw_combatmaul.name,Ultraheavy Combat Maul
 gear.mw_delugemissiles.name,Deluge Missiles
-gear.ms_pattern_b_concussion_charges.name,Pattern-B Concussion Charges
+,
+gear.ms_pattern_b_concussion_charges.name,Pattern-C Concussion Charges
 frame.dep_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,"All characters within a |burst 2| area are knocked back |2 spaces| and must pass a |HULL| save or be knocked |prone|"
+gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,All characters within a |BURST 2| area are knocked back |2 SPACES| and must pass a |HULL| save or be knocked |PRONE|
 gear.ms_pattern_b_concussion_charges.action_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,"Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |HULL| save or be pushed |2 spaces| away from the center on failure or |1 space| on a success"
+gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,Throw a Concussion Grenade within |RANGE 5|. All characters within a |BLAST 2| area must pass a |HULL| save or be pushed |2 SPACES| away from the center on failure or |1 SPACE| on a success
 gear.ms_pattern_b_concussion_charges.action_concussion_grenade.name,Conecussion Grenade
+,
+gear.ms_pattern_b_shock_charges.name,Pattern-D Shock Charges
+frame.dep_shock_mine.name,Shock Mine
+gear.ms_pattern_b_shock_charges.action_shock_mine.effect,"All characters within a |BURST 1| area must pass an |ENGINEERING| save. On failture they take |4 HEAT| and are |JAMMED| until the end of their next turn. On a success, they take |2 HEAT| and they are not |JAMMED|"
+gear.ms_pattern_b_shock_charges.action_shock_mine.name,Shock Mine
+gear.ms_pattern_b_shock_charges.action_shock_grenade.effect,"Throw a Shock Grenade within |RANGE 5|. All characters within a |BLAST 1| area must pass an |ENGINEERING| save. On failture they take |2 HEAT| and are |IMPAIRED| until the end of their next turn. On a success, they are not |IMPAIRED|"
+gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
