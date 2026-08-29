@@ -14,12 +14,12 @@
 	"load_before": [],
 	"mod_meta": {
 		"date_added": 1787579319,
-		"date_updated": 1787651840,
-		"file_id": 8140016,
+		"date_updated": 1787734329,
+		"file_id": 8143116,
 		"game_version": "1.2.4",
 		"mod_id": 6332638,
 		"name_id": "dgco-reag",
-		"revision": 4,
+		"revision": 5,
 		"user_id": 61561194,
 		"username": "Mr_Reag"
 	},
@@ -32,6 +32,6 @@
 		"Systems and weapons"
 	],
 	"title": "GMS Crisis Core Catalog Evolved",
-	"version_number": "0.3.1",
+	"version_number": "0.4.0",
 	"website_url": "https://github.com/Reag/GMSCCCE"
 }
