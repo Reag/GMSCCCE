@@ -15,9 +15,9 @@ gear.mw_delugemissiles.name,Deluge Missiles
 
 gear.ms_pattern_b_concussion_charges.name,Pattern-C Concussion Charges
 frame.dep_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,"All characters within a |burst 2| area are knocked back [b]2 SPACES[/b] and must pass a |hull save| or be knocked |prone|."
+gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,All characters within a |burst 2| area are knocked back [b]2 SPACES[/b] and must pass a |hull save| or be knocked |prone|.
 gear.ms_pattern_b_concussion_charges.action_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,"Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |hull save| or be pushed [b]2 SPACES[/b] away from the center on failure or [b]1 SPACE[/b] on a success."
+gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |hull save| or be pushed [b]2 SPACES[/b] away from the center on failure or [b]1 SPACE[/b] on a success.
 gear.ms_pattern_b_concussion_charges.action_concussion_grenade.name,Conecussion Grenade
 
 gear.ms_pattern_b_shock_charges.name,Pattern-D Shock Charges
@@ -28,7 +28,7 @@ gear.ms_pattern_b_shock_charges.action_shock_grenade.effect,"Throw a Shock Grena
 gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
 
 gear.ms_mm_suite.name,Micro-Maintance Suite
-gear.ms_mm_suite.effect,"Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|."
+gear.ms_mm_suite.effect,Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|.
 gear.ms_mm_suite.flavor,The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components.
 gear.ms_systems_override.name,Systems Override
 gear.ms_systems_override.effect,"Make a |tech attack| against a hostile character within |sensors| and |line of sight|. On a success, the target takes |4 heat| and is |impaired| and |immobilized| until the end of their next turn"
@@ -46,10 +46,17 @@ gear.mt_altruism.trigger,1/Scene
 gear.cp_auto_logistic_compcon.name,AUTO-LOGISTIC COMP/CON
 gear.cp_auto_logistic_compcon.effect,
 gear.cp_auto_logistic_compcon.trigger,
-gear.cp_auto_logistic_compcon.cp_force_multiplier.name,"Force Multiplier"
-gear.cp_auto_logistic_compcon.cp_force_multiplier.effect,"do a thing"
-gear.cp_auto_logistic_compcon.cp_optimizer.name,"Optimizer"
-gear.cp_auto_logistic_compcon.cp_optimizer.effect,"do more things"
-gear.mt_field_supply.pick.desc,"Choose one effect for this ally. They are not Stabilizing."
-gear.mt_field_supply.skip,"Skip"
+gear.cp_auto_logistic_compcon.cp_force_multiplier.name,Force Multiplier
+gear.cp_auto_logistic_compcon.cp_force_multiplier.effect,"Choose an adjacent allied character. They gain 1 of the following benefits until the end of their next turn as long as they remain within |sensors| and |line of sight|:
+-They ignore |invisibility| and |hidden| and gain |+1 accuracy| on their next attack.
+-Whenever they take damage, they first gain 2 |overshield|.
+-They gain |+1 accuracy| on all checks and saves and hostile tech actions have a 50% chance to fail against them, granting them |immunity| to all its effects.
+Each effect can only be used 1/scene on each character."
+gear.cp_auto_logistic_compcon.cp_optimizer.name,Optimizer
+gear.cp_auto_logistic_compcon.cp_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |burn| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.cp_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
+gear.mt_field_supply.pick.desc,Choose one effect for this ally. They are not Stabilizing.
+gear.mt_field_supply.skip,Skip
 gear.mt_field_supply.log,"{unit} {effect_list}."
+gear.mt_field_supply.condition,"Clear a condition"
+gear.mt_field_supply.condition.unavailable,"No eligible conditions to clear."
+,

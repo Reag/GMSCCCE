@@ -54,7 +54,7 @@ func activate(context:Context, activation:EventCore) -> void:
 
 		effects = Util.filter_empty(effects)
 		if not effects.is_empty():
-			battle_log.log_unit('gear.mt_field_supply.log', ally, {effect_list = ', '.join(effects)})
+			battle_log.log_unit("{unit} {effect_list}.", ally, {effect_list = ', '.join(effects)})
 
 # ================= ELIGIBILITY =================
 
@@ -75,7 +75,7 @@ func is_option_available(ally:Unit, option:StringName) -> bool:
 func option_label_key(option:StringName) -> String:
 	match option:
 		OPTION_BURN: return 'gear.ms_stabilize.burn'
-		OPTION_CONDITION: return 'gear.ms_stabilize.condition.self'
+		OPTION_CONDITION: return 'gear.mt_field_supply.condition'
 		OPTION_RELOAD: return 'gear.ms_stabilize.reload'
 	return ''
 
@@ -112,15 +112,15 @@ func apply_option(ally:Unit, option:StringName, specific:SpecificAction, activat
 	var stabilize := get_stabilize_action()
 	match option:
 		OPTION_BURN:
-			if not has_delegate(stabilize, &'clear_burn'): return PackedStringArray()
+			if not has_delegate(stabilize, &'clear_burn', 1): return PackedStringArray()
 			return stabilize.clear_burn(ally)
 
 		OPTION_RELOAD:
-			if not has_delegate(stabilize, &'reload_weapons'): return PackedStringArray()
+			if not has_delegate(stabilize, &'reload_weapons', 2): return PackedStringArray()
 			return stabilize.reload_weapons(ally, activation)
 
 		OPTION_CONDITION:
-			if not has_delegate(stabilize, &'clear_condition'): return PackedStringArray()
+			if not has_delegate(stabilize, &'clear_condition', 4): return PackedStringArray()
 			var clearable := UnitCondition.get_ability_clearable_conditions_on(ally)
 			var condition := await CommonActionUtil.pick_condition_to_clear(clearable, specific, ally)
 			if condition == &'' or not Unit.is_valid(ally): return PackedStringArray()
@@ -138,9 +138,24 @@ static func get_stabilize_action() -> Action:
 	return kit.actions[0]
 
 ## Fails loudly by design. There is no fallback implementation to drift out of date.
-static func has_delegate(stabilize:Action, method:StringName) -> bool:
-	if is_instance_valid(stabilize) and stabilize.has_method(method): return true
-	var message := 'mt_field_supply: cannot delegate to ms_stabilize.%s — the vanilla helper is missing or renamed. Effect skipped.' % method
-	push_error(message)
-	ModLoaderLog.error(message, MOD_ID)
-	return false
+static func has_delegate(stabilize:Action, method:StringName, expected_argc:int) -> bool:
+	if not is_instance_valid(stabilize):
+		var message := 'mt_field_supply: cannot delegate to ms_stabilize.%s — the ms_stabilize action could not be resolved. Effect skipped.' % method
+		push_error(message)
+		ModLoaderLog.error(message, MOD_ID)
+		return false
+
+	if not stabilize.has_method(method):
+		var message := 'mt_field_supply: cannot delegate to ms_stabilize.%s — the vanilla helper is missing or renamed. Effect skipped.' % method
+		push_error(message)
+		ModLoaderLog.error(message, MOD_ID)
+		return false
+
+	var actual_argc := stabilize.get_method_argument_count(method)
+	if actual_argc != expected_argc:
+		var message := 'mt_field_supply: cannot delegate to ms_stabilize.%s — expected %d argument(s), found %d. The vanilla signature changed. Effect skipped.' % [method, expected_argc, actual_argc]
+		push_error(message)
+		ModLoaderLog.error(message, MOD_ID)
+		return false
+
+	return true
