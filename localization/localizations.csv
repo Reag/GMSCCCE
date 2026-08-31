@@ -15,9 +15,9 @@ gear.mw_delugemissiles.name,Deluge Missiles
 
 gear.ms_pattern_b_concussion_charges.name,Pattern-C Concussion Charges
 frame.dep_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,All characters within a |burst 2| area are knocked back [b]2 SPACES[/b] and must pass a |hull save| or be knocked |prone|.
+gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,"All characters within a |burst 2| area are knocked back [b]2 SPACES[/b] and must pass a |hull save| or be knocked |prone|."
 gear.ms_pattern_b_concussion_charges.action_concussion_mine.name,Concussion Mine
-gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |hull save| or be pushed [b]2 SPACES[/b] away from the center on failure or [b]1 SPACE[/b] on a success.
+gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,"Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |hull save| or be pushed [b]2 SPACES[/b] away from the center on failure or [b]1 SPACE[/b] on a success."
 gear.ms_pattern_b_concussion_charges.action_concussion_grenade.name,Conecussion Grenade
 
 gear.ms_pattern_b_shock_charges.name,Pattern-D Shock Charges
@@ -28,7 +28,7 @@ gear.ms_pattern_b_shock_charges.action_shock_grenade.effect,"Throw a Shock Grena
 gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
 
 gear.ms_mm_suite.name,Micro-Maintance Suite
-gear.ms_mm_suite.effect,Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|.
+gear.ms_mm_suite.effect,"Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|."
 gear.ms_mm_suite.flavor,The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components.
 gear.ms_systems_override.name,Systems Override
 gear.ms_systems_override.effect,"Make a |tech attack| against a hostile character within |sensors| and |line of sight|. On a success, the target takes |4 heat| and is |impaired| and |immobilized| until the end of their next turn"
