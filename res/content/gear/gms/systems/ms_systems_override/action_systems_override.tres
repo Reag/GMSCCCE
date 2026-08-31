@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="1_47qa7"]
 [ext_resource type="Texture2D" uid="uid://c1lfgvup4sl0u" path="res://engine/character/gear_action/icons/tech_icon.png" id="2_sx7ak"]
 [ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="2_vbo0d"]
-[ext_resource type="Resource" uid="uid://bpapokxhynkyo" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_systems_override/ms_systems_override_onhit.tres" id="4_sx7ak"]
+[ext_resource type="Resource" uid="uid://bpapokxhynkyo" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_systems_override/onhit_systems_override.tres" id="4_sx7ak"]
 [ext_resource type="Script" uid="uid://bmsun2hcjv8dt" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_systems_override/ms_systems_override_action.gd" id="5_ei0yf"]
 
 [resource]

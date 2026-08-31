@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Kit" format=3 uid="uid://hw4tqfopuw33"]
 
 [ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_3nxn1"]
-[ext_resource type="Resource" uid="uid://cwso3fuuxknmg" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_systems_override/ms_systems_override_action.tres" id="2_pthb8"]
+[ext_resource type="Resource" uid="uid://cwso3fuuxknmg" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/gear/gms/systems/ms_systems_override/action_systems_override.tres" id="2_pthb8"]
 [ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="2_qn4to"]
 [ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="3_pthb8"]
 

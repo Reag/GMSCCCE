@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://srgk8h0s40am" path="res://assets/frames/npc/npcc_witch/npc_witch.png" id="8_wftnc"]
 [ext_resource type="Texture2D" uid="uid://yaynrykc77mi" path="res://assets/frames/npc/npcc_engineer/npc_engineer.png" id="9_ifvfk"]
 [ext_resource type="Resource" uid="uid://ccriqun3t2j3" path="res://content/frames/gms/mf_standard_pattern_i_everest/mt_replaceable_parts.tres" id="10_r0o30"]
-[ext_resource type="Resource" uid="uid://c2qitn1ihhs1l" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mf_denali_statblock.tres" id="11_wftnc"]
+[ext_resource type="Resource" uid="uid://c2qitn1ihhs1l" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/statblock_denali.tres" id="11_wftnc"]
 [ext_resource type="Resource" uid="uid://hus2jjqvgrl5" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_auto_logistic_compcon.tres" id="12_3ga7o"]
 [ext_resource type="Resource" uid="uid://cc3888m35dtym" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_field_supply/mt_field_supply.tres" id="12_ifvfk"]
 [ext_resource type="Resource" uid="uid://bcl5rtc8msmy0" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_altruism/mt_altruism.tres" id="13_3ga7o"]
