@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionSystem" format=3 uid="uid://bqin6n1o0dwwj"]
+
+[ext_resource type="Script" uid="uid://cvvlk0g0af1lk" path="res://engine/character/gear_action/action_system.gd" id="1_iqrn3"]
+[ext_resource type="Texture2D" uid="uid://cchwmd7qrfvt" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/icons/optimizer.svg" id="2_81imp"]
+
+[resource]
+script = ExtResource("1_iqrn3")
+action_type = 2
+consumes_cp = true
+is_tech = true
+icon_override = ExtResource("2_81imp")
+gear_bar_priority_mod = 2
+metadata/_custom_type_script = "uid://cvvlk0g0af1lk"

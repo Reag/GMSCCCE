@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Statblock" format=3 uid="uid://c2qitn1ihhs1l"]
+
+[ext_resource type="Script" uid="uid://bxpc46igtsmvw" path="res://engine/character/unit/statblock.gd" id="1_m15nm"]
+
+[resource]
+script = ExtResource("1_m15nm")
+size = 1
+structure = 4
+stress = 4
+health = 10
+evasion = 8
+edef = 8
+speed = 4
+heat = 6
+save_target = 10
+sensor_range = 10
+tech_attack = 1
+repairs = 5
+systems_points = 7
+reactions = 1
+activations = 1
+metadata/_custom_type_script = "uid://bxpc46igtsmvw"

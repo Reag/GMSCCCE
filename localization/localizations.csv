@@ -1,5 +1,6 @@
 id,en
 mod.reag_crisiscorecatalogevolved.name,Crisis Core Catalog Evolved
+
 gear.mw_autocannon.name,Autocannon
 gear.mw_antishipmissile.name,Anti-Ship Missile
 gear.mw_nexusapexhunter.name,Nexus (Apex Hunter)
@@ -28,8 +29,24 @@ gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
 
 gear.ms_mm_suite.name,Micro-Maintance Suite
 gear.ms_mm_suite.effect,Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|.
-gear.ms_mm_suite.flavor,"The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components."
-
+gear.ms_mm_suite.flavor,The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components.
 gear.ms_systems_override.name,Systems Override
 gear.ms_systems_override.effect,"Make a |tech attack| against a hostile character within |sensors| and |line of sight|. On a success, the target takes |4 heat| and is |impaired| and |immobilized| until the end of their next turn"
-gear.ms_systems_override.flavor,"GMS wartime electronic assault packages typically focus on exploiting predicted and cataloged back doors common in mech systems."
+gear.ms_systems_override.flavor,GMS wartime electronic assault packages typically focus on exploiting predicted and cataloged back doors common in mech systems.
+
+frame.mf_denali.name,Denali
+frame.mf_denali.flavor,"The Denali is a popular Everest variant built to sustain its allied units in the field without sacrificing frontline capability. It features a powerful ATTACHE-class C/C for coordinating the onboard field-repair drones and extinguishers, enabling the Denali to react in real-time to mitigate or prevent cascading structural damage to allied units. Should this prove inadequate, the ATTACHE C/C is capable of forming temporary networks with allied systems to directly assist with systems coordination, intrusion protection, targeting, and interdiction, without impacting the Denali's own performance."
+frame.mf_denali.flavor.short,Simple Support
+gear.mt_field_supply.name,Field Supply
+gear.mt_field_supply.effect,"When you |Stabilize=gear.ms_stabilize| the Denali, adjacent allied characters may clear all |burn|, clear one [b]condition[/b], or [b]reload[/b] all weapons"
+gear.mt_field_supply.trigger,On |Stabilize=gear.ms_stabilize|
+gear.mt_altruism.name,Altruism
+gear.mt_altruism.effect,"When the Denali performs a |barrage| or uses a |full action| |tech attack|, adjacent allied characters may |Stabilize=gear.ms_stabilize| as a |reaction|, even if they would not normally be able to take reactions."
+gear.mt_altruism.trigger,1/Scene
+gear.cp_auto_logistic_compcon.name,AUTO-LOGISTIC COMP/CON
+gear.cp_auto_logistic_compcon.effect,
+gear.cp_auto_logistic_compcon.trigger,
+gear.cp_auto_logistic_compcon.cp_force_multiplier.name,"Force Multiplier"
+gear.cp_auto_logistic_compcon.cp_force_multiplier.effect,"do a thing"
+gear.cp_auto_logistic_compcon.cp_optimizer.name,"Optimizer"
+gear.cp_auto_logistic_compcon.cp_optimizer.effect,"do more things"

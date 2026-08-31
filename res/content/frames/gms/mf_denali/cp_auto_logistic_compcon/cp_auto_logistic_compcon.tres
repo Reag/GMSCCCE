@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://hus2jjqvgrl5"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_glcw3"]
+[ext_resource type="Resource" uid="uid://bscm2avq2wi6g" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/cp_force_multiplier.tres" id="2_br2wp"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="2_o6drq"]
+[ext_resource type="Resource" uid="uid://bqin6n1o0dwwj" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_optimizer/cp_optimizer.tres" id="3_2ekno"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="3_br2wp"]
+[ext_resource type="Texture2D" uid="uid://bmy6ucyt5okhr" path="res://assets/talents/bonded.svg" id="4_1t7oa"]
+
+[resource]
+script = ExtResource("3_br2wp")
+actions = Array[ExtResource("1_glcw3")]([ExtResource("2_br2wp"), ExtResource("3_2ekno")])
+is_trait = true
+icon_override = ExtResource("4_1t7oa")
+metadata/_custom_type_script = "uid://ckrv6mvs5q65e"

@@ -1,0 +1,1 @@
+The only usage of AI in this project is the creation of the SVG icons
