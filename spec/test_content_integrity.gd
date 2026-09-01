@@ -6,6 +6,7 @@
 extends GutTest
 
 const ModContentAudit := preload('res://testkit/mod_content_audit.gd')
+const ModResources := preload('res://testkit/mod_resources.gd')
 
 const MOD_ID := 'Reag-CrisisCoreCatalogEvolved'
 
@@ -47,9 +48,13 @@ func test_weapon_tags_match_their_numbers():
 	# A weapon tagged Accurate or Inaccurate must actually carry the accuracy it advertises,
 	# otherwise the tooltip promises a modifier the attack never applies. mw_fraglauncher and
 	# mw_grenadelauncher were both tagged inaccurate with no penalty at all.
-	var mod_dir := 'res://unpacked/%s/' % MOD_ID
-	for kit:Kit in ContentLibrary.get_all(&'kits'):
-		if not kit.resource_path.begins_with(mod_dir): continue # ours only
+	# ModResources.load_ours, NOT ContentLibrary.get_all(&'kits'): get_all calls load_all(), which
+	# loads every installed mod's kits before this loop can filter anything. One of them
+	# (fateofman-ssc_atlas) ships a script that will not parse against this modkit version, and GUT
+	# counts the resulting engine error as a failure of whatever test happens to be running - so this
+	# spec used to fail for a bug in a mod nobody here wrote. Scoping the LOAD, rather than the
+	# result, is the fix; the old filter below ran too late to help.
+	for kit:Kit in ModResources.load_ours(MOD_ID, &'kits'):
 		for action:Action in kit.actions:
 			if not action is ActionAttackWeapon: continue
 			if action.tags.has(Lancer.WEAPON_TAG.ACCURATE):
