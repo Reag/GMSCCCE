@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Buff" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_maintained.gd" id="1_maint"]
+
+[resource]
+script = ExtResource("1_maint")
+to = &"ignore_hidden"
+until = 1
+localization_key_override = "cp_auto_logistic_compcon.action_force_multiplier.uplink"
+hide_from_player = true

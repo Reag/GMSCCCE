@@ -44,34 +44,34 @@ gear.mt_altruism.confirm.desc,Let adjacent allies Stabilize as a reaction?
 gear.cp_auto_logistic_compcon.name,AUTO-LOGISTIC COMP/CON
 gear.cp_auto_logistic_compcon.effect,
 gear.cp_auto_logistic_compcon.trigger,
-gear.cp_auto_logistic_compcon.cp_force_multiplier.name,Force Multiplier
-gear.cp_auto_logistic_compcon.cp_force_multiplier.effect,"Choose an adjacent allied character. They gain 1 of the following benefits until the end of their next turn as long as they remain within |sensors| and |line of sight|:
+gear.cp_auto_logistic_compcon.action_force_multiplier.name,Force Multiplier
+gear.cp_auto_logistic_compcon.action_force_multiplier.effect,"Choose an adjacent allied character. They gain 1 of the following benefits until the end of their next turn as long as they remain within |sensors| and |line of sight|:
 -They ignore |invisibility| and |hidden| and gain |+1 accuracy| on their next attack.
 -Whenever they take damage, they first gain 2 |overshield|.
 -They gain |+1 accuracy| on all checks and saves and hostile tech actions have a 50% chance to fail against them, granting them |immunity| to all its effects.
 Each effect can only be used 1/scene on each character."
-gear.cp_auto_logistic_compcon.cp_optimizer.name,Optimizer
-gear.cp_auto_logistic_compcon.cp_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |burn| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.cp_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
+gear.cp_auto_logistic_compcon.action_optimizer.name,Optimizer
+gear.cp_auto_logistic_compcon.action_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |burn| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.action_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
 gear.mt_field_supply.pick.desc,Choose one effect for this ally. They are not Stabilizing.
 gear.mt_field_supply.skip,Skip
 gear.mt_field_supply.log,{unit} {effect_list}.
 gear.mt_field_supply.condition,Clear a condition
 gear.mt_field_supply.condition.unavailable,No eligible conditions to clear.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.uplink,Uplink
-gear.cp_auto_logistic_compcon.cp_force_multiplier.uplink.desc,"Ignore |invisibility| and |hidden|, and gain |+1 accuracy| on your next attack."
-gear.cp_auto_logistic_compcon.cp_force_multiplier.uplink.unavailable,Already used on this character this scene.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.buffer,Buffer
-gear.cp_auto_logistic_compcon.cp_force_multiplier.buffer.desc,Gain 2 |overshield| whenever you take damage.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.buffer.unavailable,Already used on this character this scene.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.firewall,Firewall
-gear.cp_auto_logistic_compcon.cp_force_multiplier.firewall.desc,"Gain |+1 accuracy| on all checks and saves. Hostile tech actions have a 50% chance to fail against you."
-gear.cp_auto_logistic_compcon.cp_force_multiplier.firewall.unavailable,Already used on this character this scene.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.pick.desc,Choose one benefit for this ally.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.skip,Skip
-gear.cp_auto_logistic_compcon.cp_force_multiplier.log,{unit} gains {effect}.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.uplink.name,Uplink
-gear.cp_auto_logistic_compcon.cp_force_multiplier.uplink.effect,"Ignore |invisibility| and |hidden|, and gain |+1 accuracy| on your next attack."
-gear.cp_auto_logistic_compcon.cp_force_multiplier.buffer.name,Buffer
-gear.cp_auto_logistic_compcon.cp_force_multiplier.buffer.effect,Gain 2 |overshield| whenever you take damage.
-gear.cp_auto_logistic_compcon.cp_force_multiplier.firewall.name,Firewall
-gear.cp_auto_logistic_compcon.cp_force_multiplier.firewall.effect,"Gain |+1 accuracy| on all checks and saves. Hostile tech actions have a 50% chance to fail against you."
+gear.cp_auto_logistic_compcon.action_force_multiplier.uplink,Uplink
+gear.cp_auto_logistic_compcon.action_force_multiplier.uplink.desc,"Ignore |invisibility| and |hidden|, and gain |+1 accuracy| on your next attack."
+gear.cp_auto_logistic_compcon.action_force_multiplier.uplink.unavailable,Already used on this character this scene.
+gear.cp_auto_logistic_compcon.action_force_multiplier.buffer,Buffer
+gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.desc,Gain 2 |overshield| whenever you take damage.
+gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.unavailable,Already used on this character this scene.
+gear.cp_auto_logistic_compcon.action_force_multiplier.firewall,Firewall
+gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.desc,"Gain |+1 accuracy| on all checks and saves. Hostile tech actions have a 50% chance to fail against you."
+gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.unavailable,Already used on this character this scene.
+gear.cp_auto_logistic_compcon.action_force_multiplier.pick.desc,Choose one benefit for this ally.
+gear.cp_auto_logistic_compcon.action_force_multiplier.skip,Skip
+gear.cp_auto_logistic_compcon.action_force_multiplier.log,{unit} gains {effect}.
+gear.cp_auto_logistic_compcon.action_force_multiplier.uplink.name,Uplink
+gear.cp_auto_logistic_compcon.action_force_multiplier.uplink.effect,"Ignore |invisibility| and |hidden|, and gain |+1 accuracy| on your next attack."
+gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.name,Buffer
+gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.effect,Gain 2 |overshield| whenever you take damage.
+gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.name,Firewall
+gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.effect,"Gain |+1 accuracy| on all checks and saves. Hostile tech actions have a 50% chance to fail against you."

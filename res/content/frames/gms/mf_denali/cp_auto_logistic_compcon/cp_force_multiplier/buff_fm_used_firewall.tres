@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Buff" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_marker.gd" id="1_buff"]
+
+[resource]
+script = ExtResource("1_buff")
+until = 0
+hide_from_player = true

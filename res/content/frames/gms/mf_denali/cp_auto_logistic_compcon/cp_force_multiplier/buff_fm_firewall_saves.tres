@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuffSkillSave" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_maintained_save.gd" id="1_saves"]
+
+[resource]
+script = ExtResource("1_saves")
+all_save_types = true
+mod = 1
+bonus_subtype = &"accuracy"
+to = &"save"
+until = 1
+is_onetime = false
+localization_key_override = "cp_auto_logistic_compcon.action_force_multiplier.firewall"

@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="ActionSystem" format=3 uid="uid://bscm2avq2wi6g"]
+[gd_resource type="Resource" script_class="ActionSystemApplyBuff" format=3 uid="uid://bscm2avq2wi6g"]
 
 [ext_resource type="Texture2D" uid="uid://dg3fcddofgtss" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/icons/force_mult.svg" id="1_5i7rg"]
-[ext_resource type="Script" uid="uid://cvvlk0g0af1lk" path="res://engine/character/gear_action/action_system.gd" id="2_nh04j"]
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/action_force_multiplier.gd" id="2_fmact"]
 
 [resource]
-script = ExtResource("2_nh04j")
+script = ExtResource("2_fmact")
 action_type = 2
 is_tech = true
 icon_override = ExtResource("1_5i7rg")
 gear_bar_priority_mod = 1
-metadata/_custom_type_script = "uid://bcpi2uabonpgh"
+apply_range = 1
+apply_only_to_allies = true
+can_apply_to_self = false
+can_reapply = true
+once_per_scene_per_target = false

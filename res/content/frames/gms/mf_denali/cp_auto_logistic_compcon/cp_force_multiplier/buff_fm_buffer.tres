@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_buffer.gd" id="1_buffer"]
+
+[resource]
+script = ExtResource("1_buffer")
+until = 1
+is_onetime = false
+triggers_on = Array[StringName]([&"damage"])
+trigger_timing = 0
+localization_key_override = "cp_auto_logistic_compcon.action_force_multiplier.buffer"
