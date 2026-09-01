@@ -123,10 +123,20 @@ func activate(context:Context, activation:EventCore) -> void:
 		if activation.abort_without_unit(denali): return
 		if not Unit.is_valid(ally): continue
 
-		if activation.abort_without_unit(denali): return
-		if not Unit.is_valid(ally): continue
+		if not is_offered_to(ally): continue
 
 		await offer_stabilize(activation, specific, ally)
+
+## A player ally is NOT asked whether they want the offer: CommonActionUtil.choose_and_use defers
+## the reaction spend until the ally's own Stabilize actually commits (see its deferred_spend), so
+## cancelling that gear's own popup already declines for free. An Altruism offer in front of it
+## would be a second popup asking the same question with the same cost.
+##
+## An AI ally has no popup to cancel, so the "nothing to gain" case has to be answered here or its
+## reaction is spent on a Stabilize that does nothing.
+func is_offered_to(ally:Unit) -> bool:
+	if ally.is_player_controlled(): return true
+	return stabilize_would_do_something(ally)
 
 func confirm_with(denali:Unit, specific:SpecificAction) -> bool:
 	if not denali.is_player_controlled(): return true

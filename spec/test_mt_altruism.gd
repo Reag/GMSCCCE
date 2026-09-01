@@ -128,16 +128,8 @@ func test_prompt_rows_exist():
 	for key:String in [
 		'gear.mt_altruism.confirm',
 		'gear.mt_altruism.confirm.desc',
-		'gear.mt_altruism.offer',
-		'gear.mt_altruism.offer.desc',
 	]:
 		assert_ne(tr(key), key, 'Translation row %s exists.' % key)
-
-func test_offer_desc_names_the_ally():
-	assert_true(
-		tr('gear.mt_altruism.offer.desc').contains('{unit}'),
-		'The per-ally prompt has a {unit} placeholder, so multiple allies are distinguishable.'
-	)
 
 # ==================== BARRAGE DETECTION ====================
 
@@ -313,7 +305,9 @@ func test_one_scene_use_covers_both_halves():
 # ==================== THE ALLY STABILIZES ====================
 
 ## Sets up an ordinary two-weapon barrage and runs it. yesno_queue answers the Denali's
-## confirmation first, then one prompt per player-controlled ally.
+## confirmation first, then one prompt per player-controlled ally - that ally's OWN Stabilize
+## confirm. Altruism deliberately does not add an offer prompt in front of it; see
+## test_a_declining_ally_is_left_alone for why that second popup would be redundant.
 func barrage(answers:Array[bool]) -> void:
 	equip(0, WEAPON_A)
 	equip(1, WEAPON_B)
@@ -324,18 +318,29 @@ func barrage(answers:Array[bool]) -> void:
 func test_an_accepting_ally_is_cooled():
 	var ally := adjacent_ally()
 
-	# Denali confirm, ally's Altruism offer, then ally's OWN Stabilize confirm ("Use Stabilize?") -
-	# the redundant second prompt that comes with no longer skipping player decisions.
-	await barrage([true, true, true])
+	# Denali confirm, then the ally's own Stabilize confirm ("Use Stabilize?").
+	await barrage([true, true])
 
 	assert_eq(ally.core.current.heat, 0, 'The ally Stabilized and cleared its heat.')
 
+## This is the test that earns the absence of a separate Altruism offer prompt. Cancelling the
+## ally's OWN Stabilize popup has to cost them nothing at all - not the heat, and crucially not the
+## reaction - because that popup IS the offer. CommonActionUtil.choose_and_use only calls its
+## spend_actions_callable from the deferred_spend that runs when the chosen action commits, so a
+## cancel never reaches choose_and_use_spend_reaction. If this test ever fails, the free decline is
+## gone and Altruism owes the ally a real offer prompt of its own before it costs them anything.
 func test_a_declining_ally_is_left_alone():
 	var ally := adjacent_ally()
+	var reactions_before := ally.core.current.reactions
+	assert_gt(reactions_before, 0, 'Precondition: the ally has a reaction that could be wasted.')
 
 	await barrage([true, false])
 
 	assert_eq(ally.core.current.heat, 4, 'The ally declined and kept its heat.')
+	assert_eq(
+		ally.core.current.reactions, reactions_before,
+		'Cancelling the Stabilize popup is a free decline - no reaction is spent.'
+	)
 	assert_fired('The scene use is still spent - the Denali offered.')
 
 func test_the_ally_spends_their_reaction():
@@ -343,8 +348,8 @@ func test_the_ally_spends_their_reaction():
 	var reactions_before := ally.core.current.reactions
 	assert_gt(reactions_before, 0, 'Precondition: the ally has a reaction to spend.')
 
-	# Denali confirm, ally's Altruism offer, then ally's OWN Stabilize confirm.
-	await barrage([true, true, true])
+	# Denali confirm, then the ally's own Stabilize confirm.
+	await barrage([true, true])
 
 	assert_eq(ally.core.current.reactions, reactions_before - 1, 'Stabilizing spent their reaction.')
 
@@ -354,8 +359,8 @@ func test_an_ally_with_no_reaction_left_still_stabilizes():
 	var ally := adjacent_ally()
 	ally.core.current.reactions = 0
 
-	# Denali confirm, ally's Altruism offer, then ally's OWN Stabilize confirm.
-	await barrage([true, true, true])
+	# Denali confirm, then the ally's own Stabilize confirm.
+	await barrage([true, true])
 
 	assert_eq(ally.core.current.heat, 0, 'The ally Stabilized with no reaction available.')
 	assert_eq(ally.core.current.reactions, 0, 'And their reaction count stayed floored at zero.')
@@ -365,15 +370,14 @@ func test_every_adjacent_player_ally_is_offered():
 	var second_ally := SpecFactory.create_unit(game.map, Vector2i(1,2), Faction.PLAYER)
 	second_ally.core.current.heat = 3
 
-	# Denali confirm, then per ally: Altruism's offer AND the ally's own Stabilize confirm, run to
-	# completion for ally 1 before ally 2 is even asked (activate() awaits offer_stabilize in the
-	# loop) - so the order is [denali, ally1_offer, ally1_stabilize_confirm, ally2_offer,
-	# ally2_stabilize_confirm].
-	await barrage([true, true, true, true, true])
+	# Denali confirm, then each ally's own Stabilize confirm, run to completion for ally 1 before
+	# ally 2 is even asked (activate() awaits offer_stabilize in the loop) - so the order is
+	# [denali, ally1_stabilize_confirm, ally2_stabilize_confirm].
+	await barrage([true, true, true])
 
 	assert_eq(
-		responder.yesno_prompts.size(), 5,
-		'The Denali, both offers, and both allies own Stabilize confirms.'
+		responder.yesno_prompts.size(), 3,
+		'The Denali, and both allies own Stabilize confirms - one popup per ally, not two.'
 	)
 	assert_eq(second_ally.core.current.heat, 0, 'The second ally Stabilized too.')
 
@@ -382,11 +386,11 @@ func test_a_distant_ally_is_not_offered():
 	far_ally.core.current.heat = 3
 	adjacent_ally()
 
-	# Denali confirm, the adjacent ally's offer, then that ally's own Stabilize confirm.
-	await barrage([true, true, true])
+	# Denali confirm, then the adjacent ally's own Stabilize confirm.
+	await barrage([true, true])
 
 	assert_eq(far_ally.core.current.heat, 3, 'A non-adjacent ally is untouched.')
-	assert_eq(responder.yesno_prompts.size(), 3, 'And is never prompted.')
+	assert_eq(responder.yesno_prompts.size(), 2, 'And is never prompted.')
 
 func test_an_ai_ally_auto_accepts():
 	var ai_ally := adjacent_ally(Faction.SIDE.AI_ALLY)
@@ -430,8 +434,8 @@ func test_choosing_repair_is_not_silently_auto_defaulted_to_cool():
 
 	responder.chosen_variants = {&'stabilize_primary': 1} # 1 = repair; see doc comment above
 
-	# Denali confirm, ally's Altruism offer, then ally's own Stabilize confirm.
-	await barrage([true, true, true])
+	# Denali confirm, then the ally's own Stabilize confirm.
+	await barrage([true, true])
 
 	assert_eq(
 		ally.core.current.health, ally.core.get_health_max(),

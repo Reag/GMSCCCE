@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://de858qkj6liy8" path="res://assets/frames/npc/npcc_priest/npc_priest.png" id="4_da2x6"]
 [ext_resource type="Texture2D" uid="uid://bjxkgvs4cswe7" path="res://assets/frames/gms/mf_standard_pattern_i_everest/gms_everest.png" id="5_r0o30"]
 [ext_resource type="Texture2D" uid="uid://cn0qxbslnimgs" path="res://assets/frames/gms/mf_standard_pattern_i_everest/everest_alt_bombard.png" id="6_a7j3g"]
+[ext_resource type="Texture2D" uid="uid://bgo5y6yqvlxuu" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/frames/mf_denali/pc_denali_custom.png" id="6_jsej8"]
 [ext_resource type="Texture2D" uid="uid://bxi1v4vvs01mj" path="res://assets/frames/npc/npcc_hive/npc_hive.png" id="7_7d8de"]
 [ext_resource type="Texture2D" uid="uid://srgk8h0s40am" path="res://assets/frames/npc/npcc_witch/npc_witch.png" id="8_wftnc"]
 [ext_resource type="Texture2D" uid="uid://yaynrykc77mi" path="res://assets/frames/npc/npcc_engineer/npc_engineer.png" id="9_ifvfk"]
@@ -18,7 +19,7 @@
 
 [resource]
 script = ExtResource("3_2hgfw")
-sprites = Array[Texture2D]([ExtResource("4_da2x6"), ExtResource("5_r0o30"), ExtResource("6_a7j3g"), ExtResource("7_7d8de"), ExtResource("8_wftnc"), ExtResource("9_ifvfk")])
+sprites = Array[Texture2D]([ExtResource("6_jsej8"), ExtResource("4_da2x6"), ExtResource("5_r0o30"), ExtResource("6_a7j3g"), ExtResource("7_7d8de"), ExtResource("8_wftnc"), ExtResource("9_ifvfk")])
 traits = Array[ExtResource("3_xxgx5")]([ExtResource("12_3ga7o"), ExtResource("12_ifvfk"), ExtResource("13_3ga7o"), ExtResource("10_r0o30")])
 mount_types = Array[ExtResource("1_lxrtq")]([ExtResource("2_7d8de"), ExtResource("2_7d8de")])
 stat = ExtResource("11_wftnc")
