@@ -64,6 +64,16 @@ static func is_buff_maintained(core:BuffCore, map:MapState) -> bool:
 static func marker_id_for(option:StringName) -> StringName:
 	return MARKER_IDS.get(option, &'')
 
+## Current combat round, or -1 if the unit, its map, or round tracking isn't available. Shared by
+## Optimizer's invocation stamp (action_optimizer.gd's invoke_force_multiplier) and Force
+## Multiplier's own read of it (action_force_multiplier.gd's was_invoked_by_optimizer), so both
+## agree on what "now" means without two copies of this lookup.
+static func current_round(unit:Unit) -> int:
+	if not Unit.is_valid(unit): return -1
+	var map := unit.map
+	if map == null or not GamemasterCore.is_valid(map.game_core): return -1
+	return map.game_core.round_count
+
 ## Has this character already received this effect this scene?
 static func has_used(ally:Unit, option:StringName) -> bool:
 	if not Unit.is_valid(ally): return false
@@ -71,4 +81,23 @@ static func has_used(ally:Unit, option:StringName) -> bool:
 	if marker_id == &'': return false
 	return ally.state.buffs.any(func(buff_core:BuffCore) -> bool:
 		return buff_core.base.compcon_id == marker_id
+	)
+
+## The Firewall buff that hands out tech immunity. Named by id rather than preloaded, so this
+## file stays free of resource dependencies and cannot recurse back through buff loading.
+const FIREWALL_TECH_BUFF_ID:StringName = &'buff_fm_firewall_tech'
+
+## Is this unit tech-immune ONLY because of our own Firewall?
+##
+## Force Multiplier and Optimizer are both tech actions, so an ally holding a live Firewall would
+## otherwise be untargetable by the very core power that granted it. Lives here rather than on
+## action_force_multiplier.gd because Optimizer's recipient gathering needs the same answer, and
+## two copies of this predicate would be two things to keep in step.
+static func is_immune_only_via_our_firewall(potential_target:Unit) -> bool:
+	if not Unit.is_valid(potential_target): return false
+	if potential_target.core.frame.is_biological: return false # immune for a reason that isn't ours
+	var immunity_buffs := UnitCondition.get_buffs_to(potential_target, Buff.TO.TECH_IMMUNITY)
+	if immunity_buffs.is_empty(): return false
+	return immunity_buffs.all(func(buff_core:BuffCore) -> bool:
+		return buff_core.base.compcon_id == FIREWALL_TECH_BUFF_ID
 	)

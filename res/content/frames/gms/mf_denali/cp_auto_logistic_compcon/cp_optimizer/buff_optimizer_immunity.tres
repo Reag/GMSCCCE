@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuffStatusImmunity" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_optimizer/buff_optimizer_immunity.gd" id="1_optimm"]
+[ext_resource type="Texture2D" uid="uid://cchwmd7qrfvt" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/icons/optimizer.svg" id="2_opticon"]
+
+[resource]
+script = ExtResource("1_optimm")
+immune_to_statuses = Array[StringName]([&"impaired", &"jammed", &"slowed", &"shredded", &"immobilized", &"stunned", &"lockon"])
+until = 1
+to = &"status_immunity"
+icon = ExtResource("2_opticon")
+localization_key_override = "cp_auto_logistic_compcon.action_optimizer.immunity"

@@ -51,7 +51,7 @@ gear.cp_auto_logistic_compcon.action_force_multiplier.effect,"Choose an adjacent
 -They gain |+1 accuracy| on all checks and saves and hostile tech actions have a 50% chance to fail against them, granting them |immunity| to all its effects.
 Each effect can only be used 1/scene on each character."
 gear.cp_auto_logistic_compcon.action_optimizer.name,Optimizer
-gear.cp_auto_logistic_compcon.action_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |burn| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.action_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
+gear.cp_auto_logistic_compcon.action_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |heat| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.action_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
 gear.mt_field_supply.pick.desc,Choose one effect for this ally. They are not Stabilizing.
 gear.mt_field_supply.skip,Skip
 gear.mt_field_supply.log,{unit} {effect_list}.
@@ -75,3 +75,16 @@ gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.name,Buffer
 gear.cp_auto_logistic_compcon.action_force_multiplier.buffer.effect,Gain 2 |overshield| whenever you take damage.
 gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.name,Firewall
 gear.cp_auto_logistic_compcon.action_force_multiplier.firewall.effect,"Gain |+1 accuracy| on all checks and saves. Hostile tech actions have a 50% chance to fail against you."
+gear.cp_auto_logistic_compcon.action_optimizer.log,"{unit} is optimized."
+gear.cp_auto_logistic_compcon.action_optimizer.pick.desc,Choose one final effect.
+gear.cp_auto_logistic_compcon.action_optimizer.force_multiplier,Force Multiplier
+gear.cp_auto_logistic_compcon.action_optimizer.force_multiplier.desc,Use |Force Multiplier| on one allied character in |sensors| and |line of sight|.
+gear.cp_auto_logistic_compcon.action_optimizer.force_multiplier.unavailable,No eligible allied character.
+gear.cp_auto_logistic_compcon.action_optimizer.purge,End hostile effects
+gear.cp_auto_logistic_compcon.action_optimizer.purge.desc,End all ongoing hostile effects on one allied character in |sensors| and |line of sight|.
+gear.cp_auto_logistic_compcon.action_optimizer.purge.unavailable,No allied character is carrying a hostile effect.
+gear.cp_auto_logistic_compcon.action_optimizer.purge.pick,Choose an allied character to clear.
+gear.cp_auto_logistic_compcon.action_optimizer.purge.log,"{unit} is cleared of all hostile effects."
+gear.cp_auto_logistic_compcon.action_optimizer.skip,Skip
+gear.cp_auto_logistic_compcon.action_optimizer.immunity.name,Optimized
+gear.cp_auto_logistic_compcon.action_optimizer.immunity.effect,Immune to |conditions| from outside sources until the end of your next turn.

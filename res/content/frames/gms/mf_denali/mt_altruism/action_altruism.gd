@@ -176,6 +176,11 @@ func offer_stabilize(activation:EventCore, specific:SpecificAction, ally:Unit) -
 	var stabilize := SpecificAction.create(ally, gear, gear.get_solo_action())
 	if not SpecificAction.is_valid(stabilize): return false
 
+	# Look at whoever the offer is about, so the ally's own Stabilize prompt is not read against a
+	# camera still pointed at the Denali. Panned for AI allies too: they get no menu, but their
+	# Stabilize still resolves on screen and skipping part of the sequence reads as a glitch.
+	pan_to_after_frame(ally)
+
 	var options:Array[SpecificAction] = [stabilize]
 	return await CommonActionUtil.choose_and_use(
 		activation,
@@ -185,3 +190,22 @@ func offer_stabilize(activation:EventCore, specific:SpecificAction, ally:Unit) -
 		[],
 		[],
 	)
+
+## Pan the camera onto `unit` one frame from now, WITHOUT awaiting.
+##
+## CommonActionUtil.choose_and_use opens with `camera_bus.focus_on_unit(using.unit, false)` -
+## `using` is ours, so `using.unit` is the Denali - and that runs synchronously the instant we hand
+## control over. A pan issued before the call is therefore always overridden, and the recipient's
+## own Stabilize prompt then plays out with the camera on the Denali. Stabilize's confirm only
+## calls ensure_unit_onscreen, which no-ops while the recipient is still anywhere on screen, so
+## nothing downstream corrects it either.
+##
+## Deferring by one frame puts our pan AFTER that call: by then choose_and_use is parked on its own
+## await and the prompt is what the player is looking at. Deliberately not awaited by the caller -
+## this is a camera nicety, and blocking the action on it would change the action's timing.
+##
+## (unit, reset_zoom_to_default = false, rotate_to_clear_view = false) - a plain slide. Rotating per
+## recipient is disorienting across a run of them and overrides the player's own camera angle.
+func pan_to_after_frame(unit:Unit) -> void:
+	await X.process_frame()
+	if Unit.is_valid(unit): camera_bus.focus_on_unit(unit, false, false)

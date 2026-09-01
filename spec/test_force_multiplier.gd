@@ -354,29 +354,34 @@ func test_target_range_widens_via_real_optimizer_entry_point():
 	# the shared GearCore, which survives the SpecificAction rebuilds between Optimizer's
 	# kickstart and get_target_range - unlike the set_meta fallback exercised above.
 	var specific := specific_fm()
-	fm_action().mark_invoked_by_optimizer(specific.gear)
+	fm_action().mark_invoked_by_optimizer(specific.gear, FmUtil.current_round(denali))
 	assert_eq(
 		fm_action().get_target_range(specific),
 		denali.get_sensor_range(),
 		'optimizer invokes FM at sensors + line of sight, via real gear state'
 	)
 
-func test_optimizer_flag_is_false_before_any_activation():
+func test_optimizer_flag_is_unset_before_any_activation():
 	var gear := denali.get_gear(CORE_POWER_ID)
-	assert_false(
-		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, false),
+	assert_eq(
+		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, fm_action().NOT_INVOKED_ROUND),
+		fm_action().NOT_INVOKED_ROUND,
 		'a fresh Denali has never been invoked by Optimizer'
 	)
 
 func test_optimizer_flag_cleared_after_a_completed_activation():
 	# The flag must not survive a full, successful Force Multiplier activation either - not
 	# just the abort path below - or the NEXT ordinary use would silently widen to sensor range.
+	# (Belt-and-suspenders: the self-expiring round stamp means a leaked flag is harmless once the
+	# round moves on regardless, but this activation completes in the SAME round, so only the
+	# explicit clear in activate() - not the round comparison - can be what makes this pass.)
 	var ally := ally_at(Vector2i(2,3))
 	var gear := denali.get_gear(CORE_POWER_ID)
-	fm_action().mark_invoked_by_optimizer(gear)
+	fm_action().mark_invoked_by_optimizer(gear, FmUtil.current_round(denali))
 	await use_force_multiplier(PICK_BUFFER)
-	assert_false(
-		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, false),
+	assert_eq(
+		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, fm_action().NOT_INVOKED_ROUND),
+		fm_action().NOT_INVOKED_ROUND,
 		'flag must be cleared after a normal, completed activation'
 	)
 
@@ -405,11 +410,12 @@ func test_optimizer_flag_does_not_leak_when_activation_aborts_before_applying_bu
 	assert_eq(UnitRelation.distance_between(denali, out_of_range_ally), sensor_range + 1, 'precondition: ally is exactly one tile beyond sensor range')
 
 	var gear := denali.get_gear(CORE_POWER_ID)
-	fm_action().mark_invoked_by_optimizer(gear)
+	fm_action().mark_invoked_by_optimizer(gear, FmUtil.current_round(denali))
 	responder = add_child_autoqfree(ModChoiceResponder.new())
 	await SpecFactory.use_solo(game, denali, CORE_POWER_ID)
-	assert_false(
-		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, false),
+	assert_eq(
+		gear.get_state(fm_action().OPTIMIZER_INVOCATION_FLAG, fm_action().NOT_INVOKED_ROUND),
+		fm_action().NOT_INVOKED_ROUND,
 		'the flag must not survive an aborted activation, or the next ordinary use would widen to sensor range'
 	)
 
@@ -971,3 +977,59 @@ func test_firewall_tech_buff_name_and_effect_resolve_to_real_text():
 	assert_not_null(buff_core, 'precondition: the tech buff is actually on the ally')
 	assert_eq(Translate.buff(buff_core, 'name', false), 'Firewall', 'firewall tech buff name must resolve to real text')
 	assert_ne(Translate.buff(buff_core, 'effect', false), '', 'firewall tech buff effect must resolve to real text')
+
+# ==================== TASK 1: THE FIREWALL CHECK IS SHARED ====================
+#
+# Optimizer is tech too, and must extend the same courtesy to an ally holding our own Firewall.
+# The check moves to fm_util.gd so there is one definition rather than two.
+
+func test_fm_util_exposes_the_firewall_immunity_check():
+	# FmUtil.has_method(...) does not compile: fm_util.gd extends RefCounted with no class_name, so
+	# the "ClassRef.identifier" static-analysis path resolves has_method through the inheritance
+	# chain to Object's own (non-static) has_method and refuses to call it without an instance -
+	# "Cannot call non-static function has_method() on the class ... directly. Make an instance
+	# instead." (confirmed via an actual RED run; the error is unconditional and would persist
+	# after adding the static, since has_method never becomes static). Instantiating first, per the
+	# engine's own suggested fix, is a no-op semantically - GDScript instances answer has_method()
+	# for their class's static funcs too - and keeps the assertion's intent unchanged.
+	assert_true(
+		FmUtil.new().has_method(&'is_immune_only_via_our_firewall'),
+		'fm_util must expose the check as a static so Optimizer can share it'
+	)
+
+func test_fm_util_firewall_check_is_false_for_a_plain_ally():
+	var ally := ally_at(Vector2i(2,3))
+	assert_false(
+		FmUtil.is_immune_only_via_our_firewall(ally),
+		'an ally with no tech immunity at all is not immune via our firewall'
+	)
+
+func test_fm_util_firewall_check_is_true_for_an_ally_holding_our_firewall():
+	var ally := ally_at(Vector2i(2,3))
+	await use_force_multiplier(PICK_FIREWALL)
+	var tech_buff := firewall_tech_buff()
+	for buff_core:BuffCore in ally.state.buffs:
+		if buff_core.base.compcon_id == tech_buff.compcon_id:
+			buff_core.set_state(tech_buff.FLAG_KEY, true)
+	assert_true(UnitCondition.is_immune_to_tech(ally), 'precondition: the ally reads tech-immune')
+	assert_true(
+		FmUtil.is_immune_only_via_our_firewall(ally),
+		'the only immunity present is our own firewall'
+	)
+
+func test_fm_util_firewall_check_is_false_for_a_biological_frame():
+	var ally := ally_at(Vector2i(2,3))
+	ally.core.frame.is_biological = true
+	assert_true(UnitCondition.is_immune_to_tech(ally), 'precondition: biological frames are tech-immune')
+	assert_false(
+		FmUtil.is_immune_only_via_our_firewall(ally),
+		'a biological frame is immune for a reason that is not ours'
+	)
+
+func test_fm_action_still_exposes_the_check_as_an_instance_method():
+	# FM's can_target_unit override calls this on itself; keep the seam so nothing else breaks.
+	var ally := ally_at(Vector2i(2,3))
+	assert_false(
+		fm_action().is_immune_only_via_our_firewall(ally),
+		'the instance method still answers, now by delegating to FmUtil'
+	)

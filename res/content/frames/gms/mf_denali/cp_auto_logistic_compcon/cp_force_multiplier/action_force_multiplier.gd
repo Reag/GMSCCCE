@@ -64,6 +64,11 @@ func pick_option_for(ally:Unit, specific:SpecificAction) -> StringName:
 			if is_option_available(ally, option): return option
 		return &''
 
+	# Look at the ally this menu is about. The subtitle names them, but text alone does not tell
+	# the player WHICH mech on the field that is. Plain slide, no rotate or zoom change - see
+	# action_altruism.gd's offer_stabilize for why.
+	camera_bus.focus_on_unit(ally, false, false)
+
 	# The menu is shown even when every option is spent, so the target is visibly accounted
 	# for rather than silently passed over.
 	var choices:Array[InformationalBrochure.MultipleChoiceOption] = []
@@ -140,26 +145,43 @@ func apply_option_buff(activation:EventCore, specific:SpecificAction, target_uni
 func activate(context:Context, activation:EventCore) -> void:
 	await super.activate(context, activation)
 	var specific := SpecificAction.from_context(context)
-	if GearCore.is_valid(specific.gear): specific.gear.set_state(OPTIMIZER_INVOCATION_FLAG, false)
+	if GearCore.is_valid(specific.gear): specific.gear.set_state(OPTIMIZER_INVOCATION_FLAG, NOT_INVOKED_ROUND)
 
 # ================= TARGETING OVERRIDES =================
 
 ## Set when Optimizer invokes us, which reaches further than adjacent.
 const OPTIMIZER_INVOCATION_FLAG:StringName = &'fm_from_optimizer'
 
-## Call on our shared gear before kickstarting us via ActionSystemApplyBuff.kickstart_sibling_action.
-static func mark_invoked_by_optimizer(gear:GearCore) -> void:
-	if GearCore.is_valid(gear): gear.set_state(OPTIMIZER_INVOCATION_FLAG, true)
+## Sentinel stored in OPTIMIZER_INVOCATION_FLAG when Optimizer has not (currently) invoked us.
+##
+## The flag holds the ROUND it was invoked in, not a bool, so it is self-expiring rather than
+## relying on activate()'s own clear above always running. If the queued freebie is rejected
+## before activate() ever executes - UnitAction.get_gear_unavailable_reason still rejects a
+## freebie for SHUTDOWN, EXILED, DAZED, WEAPONS_LOCKED or destroyed gear - that clear never runs,
+## and a plain bool would silently widen every ordinary Force Multiplier for the rest of the scene.
+## Comparing the stamped round against FmUtil.current_round instead means a stale stamp from an
+## earlier round can never read as "invoked" - both actions are FULL actions, so Optimizer can
+## never stamp a round and have that same round still be current later without this action having
+## already run to completion (and cleared it) in between.
+const NOT_INVOKED_ROUND:int = -1
 
-## OVERRIDE. Adjacent normally; the Denali's sensor range when Optimizer invoked us.
+## Call on our shared gear before kickstarting us via ActionSystemApplyBuff.kickstart_sibling_action.
+## `round` is the current combat round (FmUtil.current_round(specific.unit)) - passed in rather
+## than resolved here, since a bare GearCore has no way to reach the map.
+static func mark_invoked_by_optimizer(gear:GearCore, round:int) -> void:
+	if GearCore.is_valid(gear): gear.set_state(OPTIMIZER_INVOCATION_FLAG, round)
+
+## OVERRIDE. Adjacent normally; the Denali's sensor range when Optimizer invoked us this round.
 func get_target_range(specific:SpecificAction) -> int:
 	if was_invoked_by_optimizer(specific): return specific.unit.get_sensor_range()
 	return super.get_target_range(specific)
 
 func was_invoked_by_optimizer(specific:SpecificAction) -> bool:
 	if not is_instance_valid(specific): return false
-	if GearCore.is_valid(specific.gear) and specific.gear.get_state(OPTIMIZER_INVOCATION_FLAG, false):
-		return true
+	if GearCore.is_valid(specific.gear):
+		var invoked_round:int = specific.gear.get_state(OPTIMIZER_INVOCATION_FLAG, NOT_INVOKED_ROUND)
+		if invoked_round != NOT_INVOKED_ROUND and invoked_round == FmUtil.current_round(specific.unit):
+			return true
 	return specific.has_meta(OPTIMIZER_INVOCATION_FLAG) and specific.get_meta(OPTIMIZER_INVOCATION_FLAG)
 
 ## OVERRIDE. ActionSystemApplyBuff rejects tech-immune targets, and Force Multiplier is tech -
@@ -185,9 +207,4 @@ func can_target_unit(potential_target:Unit, specific:SpecificAction) -> bool:
 	return true
 
 func is_immune_only_via_our_firewall(potential_target:Unit) -> bool:
-	if potential_target.core.frame.is_biological: return false # immune for a reason that isn't ours
-	var immunity_buffs := UnitCondition.get_buffs_to(potential_target, Buff.TO.TECH_IMMUNITY)
-	if immunity_buffs.is_empty(): return false
-	return immunity_buffs.all(func(buff_core:BuffCore) -> bool:
-		return buff_core.base.compcon_id == BUFF_FIREWALL_TECH.compcon_id
-	)
+	return FmUtil.is_immune_only_via_our_firewall(potential_target)
