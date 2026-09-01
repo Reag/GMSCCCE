@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_firewall_tech_reset.gd" id="1_fwreset"]
+
+[resource]
+script = ExtResource("1_fwreset")
+until = 1
+is_onetime = false
+hide_from_player = true
+triggers_on = Array[StringName]([&"unit_action"])
+trigger_timing = 1

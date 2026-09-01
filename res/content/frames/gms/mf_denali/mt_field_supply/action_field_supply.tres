@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://blggfq1kx303v"]
+
+[ext_resource type="Script" uid="uid://dw805p6yccdk7" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_field_supply/action_field_supply.gd" id="1_fsply"]
+
+[resource]
+script = ExtResource("1_fsply")
+triggers_on = Array[StringName]([&"unit_action"])
+consumes_rxn = false
+suppress_logging = true
+metadata/_custom_type_script = "uid://crqxmv8pxyk6g"

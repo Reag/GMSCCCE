@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Kit" format=3 uid="uid://cc3888m35dtym"]
+
+[ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_mkdfs"]
+[ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="2_5q2vg"]
+[ext_resource type="Resource" uid="uid://blggfq1kx303v" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_field_supply/action_field_supply.tres" id="2_7yrjk"]
+[ext_resource type="Texture2D" uid="uid://jk5v05sgkw7n" path="res://assets/icons/actions/systems/ms_stabilize.svg" id="2_d36gy"]
+[ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="3_d36gy"]
+
+[resource]
+script = ExtResource("3_d36gy")
+actions = Array[ExtResource("1_mkdfs")]([ExtResource("2_7yrjk")])
+is_trait = true
+icon_override = ExtResource("2_d36gy")
+metadata/_custom_type_script = "uid://ckrv6mvs5q65e"

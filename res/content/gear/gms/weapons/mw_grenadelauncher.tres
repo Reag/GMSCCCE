@@ -22,6 +22,7 @@ damage_dice = "1d3+1"
 weapon_size = 0
 weapon_type = 1
 tags = Array[StringName]([&"inaccurate"])
+attack_accuracy = "-1"
 range_pattern = SubResource("Resource_qgoi1")
 icon_override = ExtResource("3_gon5y")
 
