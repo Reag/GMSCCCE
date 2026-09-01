@@ -1,6 +1,6 @@
 id,en
 mod.reag_crisiscorecatalogevolved.name,Crisis Core Catalog Evolved
-
+,
 gear.mw_autocannon.name,Autocannon
 gear.mw_antishipmissile.name,Anti-Ship Missile
 gear.mw_nexusapexhunter.name,Nexus (Apex Hunter)
@@ -12,28 +12,24 @@ gear.mw_fraglauncher.name,Fragmentation Launcher
 gear.mw_grenadelauncher.name,Grenade Launcher
 gear.mw_combatmaul.name,Ultraheavy Combat Maul
 gear.mw_delugemissiles.name,Deluge Missiles
-
 gear.ms_pattern_b_concussion_charges.name,Pattern-C Concussion Charges
 frame.dep_concussion_mine.name,Concussion Mine
 gear.ms_pattern_b_concussion_charges.action_concussion_mine.effect,All characters within a |burst 2| area are knocked back [b]2 SPACES[/b] and must pass a |hull save| or be knocked |prone|.
 gear.ms_pattern_b_concussion_charges.action_concussion_mine.name,Concussion Mine
 gear.ms_pattern_b_concussion_charges.action_concussion_grenade.effect,Throw a Concussion Grenade within |range 5|. All characters within a |blast 2| area must pass a |hull save| or be pushed [b]2 SPACES[/b] away from the center on failure or [b]1 SPACE[/b] on a success.
 gear.ms_pattern_b_concussion_charges.action_concussion_grenade.name,Conecussion Grenade
-
 gear.ms_pattern_b_shock_charges.name,Pattern-D Shock Charges
 frame.dep_shock_mine.name,Shock Mine
 gear.ms_pattern_b_shock_charges.action_shock_mine.effect,"All characters within a |burst 1| area must pass an |engineering save|. On failture they take |4 heat| and are |jammed| until the end of their next turn. On a success, they take |2 heat| and they are not |jammed|."
 gear.ms_pattern_b_shock_charges.action_shock_mine.name,Shock Mine
 gear.ms_pattern_b_shock_charges.action_shock_grenade.effect,"Throw a Shock Grenade within |range 5|. All characters within a |blast 1| area must pass an |engineering save|. On failture they take |2 heat| and are |impaired| until the end of their next turn. On a success, they are not |impaired|."
 gear.ms_pattern_b_shock_charges.action_shock_grenade.name,Shock Grenade
-
 gear.ms_mm_suite.name,Micro-Maintance Suite
 gear.ms_mm_suite.effect,Two allied mech characters in |line of sight| and |sensors| gain |3 overshield|.
 gear.ms_mm_suite.flavor,The GMS Micro-Maintenance Suite activates spare motile ablative and fabrication modules commonly found in combat vehicles to proactive protect key components.
 gear.ms_systems_override.name,Systems Override
 gear.ms_systems_override.effect,"Make a |tech attack| against a hostile character within |sensors| and |line of sight|. On a success, the target takes |4 heat| and is |impaired| and |immobilized| until the end of their next turn"
 gear.ms_systems_override.flavor,GMS wartime electronic assault packages typically focus on exploiting predicted and cataloged back doors common in mech systems.
-
 frame.mf_denali.name,Denali
 frame.mf_denali.flavor,"The Denali is a popular Everest variant built to sustain its allied units in the field without sacrificing frontline capability. It features a powerful ATTACHE-class C/C for coordinating the onboard field-repair drones and extinguishers, enabling the Denali to react in real-time to mitigate or prevent cascading structural damage to allied units. Should this prove inadequate, the ATTACHE C/C is capable of forming temporary networks with allied systems to directly assist with systems coordination, intrusion protection, targeting, and interdiction, without impacting the Denali's own performance."
 frame.mf_denali.flavor.short,Simple Support
@@ -41,8 +37,10 @@ gear.mt_field_supply.name,Field Supply
 gear.mt_field_supply.effect,"When you |Stabilize=gear.ms_stabilize| the Denali, adjacent allied characters may clear all |burn|, clear one [b]condition[/b], or [b]reload[/b] all weapons"
 gear.mt_field_supply.trigger,On |Stabilize=gear.ms_stabilize|
 gear.mt_altruism.name,Altruism
-gear.mt_altruism.effect,"When the Denali performs a |barrage| or uses a |full action| |tech attack|, adjacent allied characters may |Stabilize=gear.ms_stabilize| as a |reaction|, even if they would not normally be able to take reactions."
-gear.mt_altruism.trigger,1/Scene
+gear.mt_altruism.effect,"When the Denali performs a |barrage| or uses a |full tech action=lancer.actiontype.tech|, adjacent allied characters may |Stabilize=gear.ms_stabilize| as a |reaction|, even if they would not normally be able to take reactions."
+gear.mt_altruism.trigger,The Denali performs a |barrage or a full tech action
+gear.mt_altruism.confirm,Altruism
+gear.mt_altruism.confirm.desc,Let adjacent allies Stabilize as a reaction?
 gear.cp_auto_logistic_compcon.name,AUTO-LOGISTIC COMP/CON
 gear.cp_auto_logistic_compcon.effect,
 gear.cp_auto_logistic_compcon.trigger,
@@ -56,7 +54,6 @@ gear.cp_auto_logistic_compcon.cp_optimizer.name,Optimizer
 gear.cp_auto_logistic_compcon.cp_optimizer.effect,"You and all allied mech characters in |sensors| and |line of sight| immediately clear all |burn| and |exposed|, and then |stabilize|. Allied characters affected by this action clear all conditions from outside sources and gain |immunity| to them until the end of their next turn. You may then use |Force Multiplier=gear.cp_auto_logistic_compcon.cp_force_multiplier| on one allied character in |line of sight| and |sensors| or end all ongoing hostile effects on that character."
 gear.mt_field_supply.pick.desc,Choose one effect for this ally. They are not Stabilizing.
 gear.mt_field_supply.skip,Skip
-gear.mt_field_supply.log,"{unit} {effect_list}."
-gear.mt_field_supply.condition,"Clear a condition"
-gear.mt_field_supply.condition.unavailable,"No eligible conditions to clear."
-,
+gear.mt_field_supply.log,{unit} {effect_list}.
+gear.mt_field_supply.condition,Clear a condition
+gear.mt_field_supply.condition.unavailable,No eligible conditions to clear.

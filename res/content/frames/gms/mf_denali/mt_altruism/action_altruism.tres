@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_altruism/action_altruism.gd" id="1_altru"]
+
+[resource]
+script = ExtResource("1_altru")
+triggers_on = Array[StringName]([&"unit_action"])
+consumes_rxn = false
