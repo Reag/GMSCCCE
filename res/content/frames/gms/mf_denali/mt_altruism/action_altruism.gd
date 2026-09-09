@@ -12,6 +12,8 @@ const STABILIZE_NPC := &'npcf_stabilize'
 ## POST is emitted after activation - so the threshold is >=, not >.
 const PAIR := 2
 
+const Compat := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/reag_compat.gd')
+
 # ================= TRIGGER =================
 
 func get_required_triggering_context() -> Array[Context.PROP]:
@@ -140,14 +142,8 @@ func is_offered_to(ally:Unit) -> bool:
 
 func confirm_with(denali:Unit, specific:SpecificAction) -> bool:
 	if not denali.is_player_controlled(): return true
-	choice_bus.show_using_action(specific)
-	var accepted:bool = await choice_bus.quick_yesno(
-		denali.tile(),
-		tr('gear.mt_altruism.confirm'),
-		tr('gear.mt_altruism.confirm.desc')
-	)
-	choice_bus.hide_using_action()
-	return accepted
+	# show_using_action is a no-op on 1.4.0; the shim passes `using` as a request parameter there.
+	return await Compat.yesno(denali.tile(), tr('gear.mt_altruism.confirm'), tr('gear.mt_altruism.confirm.desc'), specific)
 
 ## "Nothing to do" cannot be asked the same way for both Stabilizes, so this is only used for
 ## AI allies - a player is always offered the choice and can decline for themselves.
