@@ -5,7 +5,9 @@
 	],
 	"compatible_game_version": [
 		"1.3.3",
-		"1.4.0"
+		"1.4.0",
+		"1.4.1",
+		"1.4.2"
 	],
 	"config_schema": {},
 	"dependencies": [],
@@ -33,6 +35,6 @@
 		"Systems and weapons"
 	],
 	"title": "GMS Crisis Core Catalog Evolved",
-	"version_number": "0.9.0",
+	"version_number": "0.9.1",
 	"website_url": "https://github.com/Reag/GMSCCCE"
 }
