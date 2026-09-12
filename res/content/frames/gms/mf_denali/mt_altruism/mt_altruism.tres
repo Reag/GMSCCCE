@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_vmomo"]
 [ext_resource type="Script" uid="uid://n33no7rw7y82" path="res://engine/character/gear_passive/passive.gd" id="2_7qml8"]
-[ext_resource type="Texture2D" uid="uid://b6cfn1end4rk3" path="res://unpacked/gavstarb-gms_1st_party/res/assets/icons/modded/gms-1st-party/action_rallying_cry.png" id="2_tst37"]
+[ext_resource type="Texture2D" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/icons/mt_altruism_icon.png" id="2_tst37"]
 [ext_resource type="Script" uid="uid://ckrv6mvs5q65e" path="res://engine/character/gear/kit.gd" id="3_tst37"]
 [ext_resource type="Resource" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_altruism/action_altruism.tres" id="4_altru"]
 

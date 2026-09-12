@@ -1,6 +1,6 @@
-[gd_resource type="Resource" format=3]
+[gd_resource type="Resource" format=3 uid="uid://clhm3vngjjdee"]
 
-[ext_resource type="Script" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_altruism/action_altruism.gd" id="1_altru"]
+[ext_resource type="Script" uid="uid://db3yr0ss2t17y" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/mt_altruism/action_altruism.gd" id="1_altru"]
 
 [resource]
 script = ExtResource("1_altru")
