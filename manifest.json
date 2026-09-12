@@ -7,9 +7,9 @@
 		"1.3.3",
 		"1.4.0",
 		"1.4.1",
-		"1.4.2"
+		"1.4.2",
+		"1.4.3"
 	],
-	"config_schema": {},
 	"dependencies": [],
 	"description": "",
 	"image": "thumbnail.png",
@@ -17,12 +17,12 @@
 	"load_before": [],
 	"mod_meta": {
 		"date_added": 1787579319,
-		"date_updated": 1788026939,
-		"file_id": 8165156,
+		"date_updated": 1788285273,
+		"file_id": 8204229,
 		"game_version": "1.2.4",
-		"mod_id": 6332638,
+		"modio_id": 6332638,
 		"name_id": "dgco-reag",
-		"revision": 10,
+		"revision": 11,
 		"user_id": 61561194,
 		"username": "Mr_Reag"
 	},
@@ -30,11 +30,11 @@
 	"namespace": "Reag",
 	"optional_dependencies": [],
 	"requires_restart": false,
-	"summary": "A partial implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release, which can be found at itch.io",
+	"summary": "An implementation of the GMS Crisis Catalog for Lancer Tactics, which expands the GMS catalog to have more coverage. Please support the official release, which can be found at itch.io",
 	"tags": [
 		"Systems and weapons"
 	],
 	"title": "GMS Crisis Core Catalog Evolved",
-	"version_number": "0.9.1",
+	"version_number": "1.0.1",
 	"website_url": "https://github.com/Reag/GMSCCCE"
 }
