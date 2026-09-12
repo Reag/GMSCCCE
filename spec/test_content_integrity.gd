@@ -7,12 +7,13 @@ extends GutTest
 
 const ModContentAudit := preload('res://testkit/mod_content_audit.gd')
 const ModResources := preload('res://testkit/mod_resources.gd')
+const Compat := preload('res://testkit/modkit_compat.gd')
 
 const MOD_ID := 'Reag-CrisisCoreCatalogEvolved'
 
 func test_the_mod_is_actually_loaded():
 	# Everything below is vacuously true if the mod did not load, so check it first.
-	assert_true(ModLoaderMod.is_mod_active(MOD_ID), '%s is loaded and active.' % MOD_ID)
+	assert_true(Compat.is_mod_active(MOD_ID), '%s is loaded and active.' % MOD_ID)
 
 func test_no_resource_is_filed_under_the_wrong_index():
 	# ContentLibrary sorts by filename prefix, not script class. See mod_content_audit.gd.

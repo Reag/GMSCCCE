@@ -3,7 +3,7 @@ extends ActionReaction
 ## When the Denali Stabilizes, each adjacent allied character may take ONE of Stabilize's three
 ## secondary effects. They are NOT Stabilizing: nothing here emits ReactionBus.TRIGGER.STABILIZE.
 ## The effects are delegated to the live ms_stabilize action rather than reimplemented, so they
-## stay correct if the base game changes how they work (clear_burn is a TODO stub upstream).
+## stay correct if the base game changes how they work.
 
 const TRIGGERING_GEAR_ID := &'ms_stabilize'
 
@@ -17,6 +17,8 @@ const DISPLAY_ORDER:Array[StringName] = [OPTION_BURN, OPTION_CONDITION, OPTION_R
 const NPC_PRIORITY:Array[StringName] = [OPTION_CONDITION, OPTION_BURN, OPTION_RELOAD]
 
 const MOD_ID := 'Reag-CrisisCoreCatalogEvolved'
+
+const Compat := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/reag_compat.gd')
 
 # ================= TRIGGER =================
 
@@ -89,14 +91,15 @@ func pick_option_for(ally:Unit, specific:SpecificAction) -> StringName:
 
 	# The menu is shown even when every option is unavailable, so the ally is visibly
 	# accounted for rather than silently passed over.
-	var choices:Array[InformationalBrochure.MultipleChoiceOption] = []
+	var choices:Array[Dictionary] = [] # {text, disabled_reason}; see Compat.multiple_choice
 	for option:StringName in DISPLAY_ORDER:
 		var label_key := option_label_key(option)
 		var disabled_reason := '' if is_option_available(ally, option) else tr('%s.unavailable' % label_key)
-		choices.append(InformationalBrochure.MultipleChoiceOption.create(tr(label_key), disabled_reason))
-	choices.append(InformationalBrochure.MultipleChoiceOption.create(tr('gear.mt_field_supply.skip')))
+		choices.append({text = tr(label_key), disabled_reason = disabled_reason})
+	choices.append({text = tr('gear.mt_field_supply.skip'), disabled_reason = ''})
 
-	var index := await choice_bus.choose_from_multiple_choice(
+	var index := await Compat.multiple_choice(
+		specific,
 		choices,
 		tr('gear.mt_field_supply.name'),
 		'gear.mt_field_supply.pick.desc', # a key: the brochure relies on Label auto-translate
@@ -112,6 +115,10 @@ func apply_option(ally:Unit, option:StringName, specific:SpecificAction, activat
 	var stabilize := get_stabilize_action()
 	match option:
 		OPTION_BURN:
+			# 1.3.3: clear_burn(unit). 1.4.0: clear_burn(unit, activation) - it queues event_unit_clear_burn
+			# on the activation instead of editing the unit directly. Accept either shape; refuse anything else.
+			if is_instance_valid(stabilize) and stabilize.get_method_argument_count(&'clear_burn') == 2:
+				return stabilize.clear_burn(ally, activation)
 			if not has_delegate(stabilize, &'clear_burn', 1): return PackedStringArray()
 			return stabilize.clear_burn(ally)
 

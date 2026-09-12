@@ -12,6 +12,7 @@ extends ActionSystemApplyBuff
 ## per effect - and must stay false.
 
 const FmUtil := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/fm_util.gd')
+const Compat := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/reag_compat.gd')
 
 const BUFF_UPLINK_ACCURACY:Buff = preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_uplink_accuracy.tres')
 const BUFF_UPLINK_INVISIBLE:Buff = preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_force_multiplier/buff_fm_uplink_invisible.tres')
@@ -71,17 +72,18 @@ func pick_option_for(ally:Unit, specific:SpecificAction) -> StringName:
 
 	# The menu is shown even when every option is spent, so the target is visibly accounted
 	# for rather than silently passed over.
-	var choices:Array[InformationalBrochure.MultipleChoiceOption] = []
+	var choices:Array[Dictionary] = [] # {text, disabled_reason}; see Compat.multiple_choice
 	for option:StringName in FmUtil.DISPLAY_ORDER:
 		var label_key := option_label_key(option)
 		var disabled_reason := '' if is_option_available(ally, option) else tr('%s.unavailable' % label_key)
 		# The menu entry shows the option's DESCRIPTION, not its short name - option_label_key is
 		# still used above for the disabled reason, and separately in apply_buffs_to_targets for
 		# the battle log, so neither of those reads out the full description.
-		choices.append(InformationalBrochure.MultipleChoiceOption.create(tr(option_desc_key(option)), disabled_reason))
-	choices.append(InformationalBrochure.MultipleChoiceOption.create(tr('%s.skip' % LOC_ROOT)))
+		choices.append({text = tr(option_desc_key(option)), disabled_reason = disabled_reason})
+	choices.append({text = tr('%s.skip' % LOC_ROOT), disabled_reason = ''})
 
-	var index := await choice_bus.choose_from_multiple_choice(
+	var index := await Compat.multiple_choice(
+		specific,
 		choices,
 		tr('%s.name' % LOC_ROOT),
 		'%s.pick.desc' % LOC_ROOT, # a key: the brochure relies on Label auto-translate

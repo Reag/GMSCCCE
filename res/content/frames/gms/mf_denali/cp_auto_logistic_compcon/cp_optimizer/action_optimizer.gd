@@ -19,6 +19,8 @@ const FmUtil := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/conten
 
 const BUFF_IMMUNITY:Buff = preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/mf_denali/cp_auto_logistic_compcon/cp_optimizer/buff_optimizer_immunity.tres')
 
+const Compat := preload('res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/frames/gms/reag_compat.gd')
+
 const LOC_ROOT := 'gear.cp_auto_logistic_compcon.action_optimizer'
 
 # ================= RECIPIENTS =================
@@ -200,18 +202,20 @@ func pick_branch(specific:SpecificAction, fm_targets:Array, purge_targets:Array)
 	# over whichever ally happened to go last.
 	camera_bus.focus_on_unit(specific.unit, false, false)
 
-	var choices:Array[InformationalBrochure.MultipleChoiceOption] = []
-	choices.append(InformationalBrochure.MultipleChoiceOption.create(
-		tr('%s.force_multiplier.desc' % LOC_ROOT),
-		'' if not fm_targets.is_empty() else tr('%s.force_multiplier.unavailable' % LOC_ROOT)
-	))
-	choices.append(InformationalBrochure.MultipleChoiceOption.create(
-		tr('%s.purge.desc' % LOC_ROOT),
-		'' if not purge_targets.is_empty() else tr('%s.purge.unavailable' % LOC_ROOT)
-	))
-	choices.append(InformationalBrochure.MultipleChoiceOption.create(tr('%s.skip' % LOC_ROOT)))
+	var choices:Array[Dictionary] = [ # {text, disabled_reason}; see Compat.multiple_choice
+		{
+			text = tr('%s.force_multiplier.desc' % LOC_ROOT),
+			disabled_reason = '' if not fm_targets.is_empty() else tr('%s.force_multiplier.unavailable' % LOC_ROOT),
+		},
+		{
+			text = tr('%s.purge.desc' % LOC_ROOT),
+			disabled_reason = '' if not purge_targets.is_empty() else tr('%s.purge.unavailable' % LOC_ROOT),
+		},
+		{text = tr('%s.skip' % LOC_ROOT), disabled_reason = ''},
+	]
 
-	var index := await choice_bus.choose_from_multiple_choice(
+	var index := await Compat.multiple_choice(
+		specific,
 		choices,
 		tr('%s.name' % LOC_ROOT),
 		'%s.pick.desc' % LOC_ROOT, # a key: the brochure relies on Label auto-translate
@@ -248,9 +252,8 @@ func run_purge(activation:EventCore, specific:SpecificAction, purge_targets:Arra
 	var target:Unit = purge_targets.front()
 	if specific.unit.is_player_controlled():
 		# Frame every candidate rather than panning to one: this prompt is a choice BETWEEN units,
-		# so the player needs to see them all. choice_bus.choose_unit is called without a
-		# SpecificAction, and tilepicker_unit only moves the camera when it is given one - so
-		# nothing else does this for us here.
+		# so the player needs to see them all. tilepicker_unit only moves the camera when it is
+		# given a SpecificAction, so nothing else does this for us here.
 		var target_tiles:Array[Vector2i] = []
 		for candidate:Unit in purge_targets:
 			if Unit.is_valid(candidate): target_tiles.append(candidate.tile())
@@ -258,13 +261,10 @@ func run_purge(activation:EventCore, specific:SpecificAction, purge_targets:Arra
 		# matching the plain-slide treatment used at the other prompts.
 		if not target_tiles.is_empty(): camera_bus.show_all_tiles(target_tiles, false, true, false)
 
-		choice_bus.show_informational_brochure(
-			'%s.name' % LOC_ROOT,
-			'%s.purge.pick' % LOC_ROOT,
-			'',
-			false
-		)
-		target = await choice_bus.choose_unit(purge_targets)
+		# The panel explains WHY a purge target is being asked for; Compat bridges 1.3.3's un-awaited
+		# info brochure (closed by the targeting request that follows) and 1.4.0's request-scoped
+		# brochure (closed by the pick itself). See Compat.choose_unit_with_brochure.
+		target = await Compat.choose_unit_with_brochure(specific, purge_targets, '%s.name' % LOC_ROOT, '%s.purge.pick' % LOC_ROOT)
 	if activation.abort_without_unit(target): return
 
 	var cleared := OptimizerUtil.clear_hostile_effects(activation, target)
