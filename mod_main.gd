@@ -1,11 +1,11 @@
 extends Node
 const MOD_ID := "Reag-CrisisCoreCatalogEvolved" ## Name of the directory that this file is in
 
-# 1.4.0 workaround (see queue_license_extension_if_engine_skipped_it below)
 const LICENSE_PATH := 'res://content/licenses/gms/li_gms.tres'
 const LICENSE_EXTENSION := 'res://unpacked/Reag-CrisisCoreCatalogEvolved/res/content/licenses/gms/li_gms.tres_ext.gd'
-const MOD_LIBRARY_140 := 'res://engine/mod/mod_library.gd' # class_name ModLibrary exists only on 1.4.0; never name it here
-var _retained_license:Resource # 1.4.0: see queue_license_extension_if_engine_skipped_it
+const MOD_LIBRARY_140 := 'res://engine/mod/mod_library.gd' # class_name ModLibrary exists only on 1.4.x; never name it here
+const APPLIED_META := &'reag_ccce_li_gms_applied' ## stamped on the license instance we edited, so we never edit it twice
+var _retained_license:Resource # keeps our edits alive in the resource cache; see apply_license_extension_directly
 
 # Runs when this mod is activated (whenever active mods are changed). Kept as _init rather than the
 # 1.4.0 template's _ready: on 1.4.0 the applier marks the mod "installing" before instantiating this
@@ -24,38 +24,64 @@ func _init() -> void:
 	# 3. Installs any SCRIPTS (.gd) that already existed as a script_extension. (Warning: cannot extend class_name scripts)
 	LancerTacticsMod.add_overwrite_extend_mod_resources(MOD_ID)
 
-	queue_license_extension_if_engine_skipped_it()
+	apply_license_extension_directly()
 
-## 1.4.0 unstable's LancerTacticsMod.extend_resource (lancer_tactics_mod.gd:180) strips the SCENE
-## suffix instead of the RESOURCE one, so it looks for "li_gms.tres_ext.gd" on disk, prints
-## "Skipped extending resource", and never queues the extension. li_gms.tres_ext.gd is the only
-## thing that puts the Denali and this mod's 15 GMS kits into the GMS license, so without this the
-## mod ships nothing a player can buy.
+## Applies li_gms.tres_ext.gd ourselves instead of letting the engine apply it, and takes our entry
+## back out of the queue the engine would have applied it from.
 ##
-## Queue it ourselves, exactly as the fixed engine would: ModApplier.apply_installed_queued_extensions
-## applies every mod's queue after every mod is installed, in load order, so this composes with any
-## other mod extending the same license. Self-disabling: on 1.3.3 there is no ModLibrary script and
-## this returns at once; once Wickworks fixes the typo the engine will have queued it already and
-## the has() check returns. Reported upstream 2026-09-08.
+## WHY: on 1.4.x that queue cannot hold two mods at once. ModApplier.apply_installed_queued_extensions
+## (engine/mod/mod_applier.gd:219-220) folds every installed mod's queued_resource_modifications into
+## one Dictionary keyed by TARGET RESOURCE PATH:
 ##
-## Second 1.4.0 bug in the same path: _ModLoaderResourceExtension._save_resource no longer keeps the
-## extended resource alive (1.3.3 appended it to ModLoaderStore.extended_resources), so once the
-## applier's local reference goes out of scope the resource-cache entry evaporates and the next
-## load() reads the vanilla license off disk. Holding the license from HERE, before the queue is
-## applied, means the extension mutates the very object this node keeps, so the entry cannot die.
-## (The sibling mod hit the scene-extension twin of this: see Reag-ThyHubris mod_main.gd.)
-func queue_license_extension_if_engine_skipped_it() -> void:
-	if not ResourceLoader.exists(MOD_LIBRARY_140): return
+##     all_queued_resource_modifications.merge(mod.queued_resource_modifications)
+##
+## Dictionary.merge does not concatenate values - with overwrite left false it keeps the first value
+## for a key and throws the rest away. So when two mods both extend res://content/licenses/gms/li_gms.tres,
+## the mod installed FIRST keeps the key and every later mod's modify_resource callable is discarded
+## silently: no warning, no log line. Since this license extension is the only thing that puts the
+## Denali and our 15 GMS kits into a license a player can buy from, losing that coin toss ships a
+## Crisis Core Catalog that appears not to have activated at all.
+##
+## That is not hypothetical. gavstarb-gms_1st_party (v4.2.0) and fateofman-imi_alt_frames both extend
+## this same license, and gavstarb-gms_1st_party installs before us, so before this workaround we lost
+## every time both were enabled. Verified 2026-09-13: with it unpacked alongside us, li_gms rank 1
+## granted mf_chomolungma and mf_sagarmatha and no mf_denali. The same engine bug hits .tscn_ext.gd
+## (line 219) - if two mods ever extend one scene, only the first-installed one runs. Report upstream.
+##
+## THE FIX: erase our own key, so the contended dictionary sees only the OTHER mod's entry and applies
+## it normally, and edit the license here instead. Order does not matter - whoever runs second calls
+## load(LICENSE_PATH), gets this same cached instance, and appends to it - as long as the instance
+## stays in the resource cache, which is what _retained_license is for.
+##
+## That retention is load-bearing for a SECOND upstream bug: 1.4.x's
+## _ModLoaderResourceExtension._save_resource no longer keeps the extended resource alive (1.3.3
+## appended it to ModLoaderStore.extended_resources), so once the last local reference goes out of
+## scope the cache entry evaporates and the next load() reads the vanilla license off disk.
+## gavstarb-gms_1st_party holds its own reference for the same reason. (Reag-ThyHubris' mod_main.gd
+## has the scene-extension twin of that one.)
+##
+## Self-disabling on 1.3.3: that engine has no ModLibrary script, applies each mod's extensions
+## without merging them, and needs nothing from us - so we return at once and its own path runs.
+func apply_license_extension_directly() -> void:
+	if not ResourceLoader.exists(MOD_LIBRARY_140): return # 1.3.3 applies extensions per-mod; no collision to dodge
 	var library = load(MOD_LIBRARY_140)
 	if not library.is_mod_being_installed(MOD_ID): return
-	_retained_license = load(LICENSE_PATH) # retention: needed whether or not the engine queues the extension itself
-	var mod = library.get_mod_being_installed()
-	if mod.queued_resource_modifications.has(LICENSE_PATH): return # the engine did its job
 
+	_retained_license = load(LICENSE_PATH)
+	if _retained_license == null:
+		ModLoaderLog.error('Could not load "%s"; this mod grants nothing.' % LICENSE_PATH, MOD_ID)
+		return
+
+	# Stand down from the shared queue whether or not the engine got as far as filling it.
+	library.get_mod_being_installed().queued_resource_modifications.erase(LICENSE_PATH)
+
+	# The meta rides on the instance, not on this node: a license still in cache from a previous
+	# activation already has our gear on it, and a freshly reloaded vanilla one does not.
+	if _retained_license.has_meta(APPLIED_META): return
 	var extender = load(LICENSE_EXTENSION).new()
-	mod.queued_resource_modifications.get_or_add(LICENSE_PATH, []).append(extender.modify_resource)
-	mod.queued_modification_objects.append(extender) # keep the callable's object alive until applied
-	ModLoaderLog.info('Queued li_gms.tres_ext.gd by hand: 1.4.0 extend_resource skipped it.', MOD_ID)
+	extender.modify_resource(_retained_license)
+	_retained_license.set_meta(APPLIED_META, true)
+	ModLoaderLog.info('Applied li_gms.tres_ext.gd directly, outside the shared extension queue.', MOD_ID)
 
 # Runs when this mod's node is added to the tree (whenever active mods are changed)
 #func _ready() -> void:
