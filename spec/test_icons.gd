@@ -29,6 +29,13 @@ const CHIPS := [
 	['buff_fm_firewall_tech', 'buff_fm_firewall.svg'],
 ]
 
+## Every CCC weapon: one Kit, one attack action, its own glyph named after the Kit (weapon design section 3).
+const WEAPONS:Array[StringName] = [
+	&'mw_antishipmissile', &'mw_antitankmissile', &'mw_autocannon', &'mw_combatmaul', &'mw_delugemissiles',
+	&'mw_fraglauncher', &'mw_grenadelauncher', &'mw_heavyslugshotgun', &'mw_heliosnexus', &'mw_nexusapexhunter',
+	&'mw_recoilessrifle',
+]
+
 func get_kit(id:StringName) -> Kit:
 	var kit:Kit = ContentLibrary.get_kit(id)
 	assert_true(Kit.is_valid(kit), '%s is in the kits index.' % id)
@@ -108,3 +115,18 @@ func test_the_five_kept_glyphs_are_unchanged():
 		assert_eq(gear_bar_icon(compcon, 'action_optimizer'), ICONS + 'optimizer.svg', 'Optimizer is kept.')
 	var optimized:Buff = load(OPTIMIZER + 'buff_optimizer_immunity.tres')
 	assert_eq(path_of(optimized.icon), ICONS + 'optimizer.svg', 'The Optimized chip keeps the Optimizer glyph.')
+
+func test_each_weapon_wears_its_own_glyph():
+	# The gear bar draws the action's icon with the Kit passed in; the loadout card draws the Kit's,
+	# which falls through to that one action (no weapon Kit carries an icon_override).
+	var seen := {}
+	for id:StringName in WEAPONS:
+		var kit := get_kit(id)
+		if not Kit.is_valid(kit): continue
+		assert_eq(kit.actions.size(), 1, '%s has exactly one action.' % id)
+		var want := ICONS + String(id) + '.svg'
+		var bar_icon := path_of(kit.actions[0].get_icon(kit))
+		assert_eq(bar_icon, want, '%s shows its own glyph on the gear bar.' % id)
+		assert_eq(path_of(kit.icon_and_flavor().icon), want, '%s shows its own glyph on its loadout card.' % id)
+		seen[bar_icon] = true
+	assert_eq(seen.size(), WEAPONS.size(), 'All eleven weapons wear different pictures.')
