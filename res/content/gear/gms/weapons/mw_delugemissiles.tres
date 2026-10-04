@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8unc74nyhjr0" path="res://engine/character/gear_action/action.gd" id="1_cbli3"]
 [ext_resource type="Script" uid="uid://cs5u2sk1kig6i" path="res://engine/character/gear_action/resources/damage_value.gd" id="2_1mw5l"]
-[ext_resource type="Texture2D" uid="uid://cmbdlbayiatx1" path="res://assets/icons/actions/weapons/mw_pinaka_missiles.svg" id="3_cbli3"]
+[ext_resource type="Texture2D" path="res://unpacked/Reag-CrisisCoreCatalogEvolved/res/assets/icons/mw_delugemissiles.svg" id="3_cbli3"]
 [ext_resource type="Script" uid="uid://d2nldg6e3doqd" path="res://engine/character/gear_action/resources/on_hit_effect.gd" id="4_delww"]
 [ext_resource type="Script" uid="uid://c0yv6pnw2be6l" path="res://engine/character/gear_action/resources/range_pattern.gd" id="5_a53fn"]
 [ext_resource type="Script" uid="uid://vi3dfs5ql3lg" path="res://engine/character/gear_action/action_attack_weapon.gd" id="6_3r023"]
