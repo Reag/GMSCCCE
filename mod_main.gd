@@ -24,7 +24,6 @@ func apply_license_extension_directly() -> void:
 
 	_retained_license = load(LICENSE_PATH)
 	if _retained_license == null:
-		ModLoaderLog.error('Could not load "%s"; this mod grants nothing.' % LICENSE_PATH, MOD_ID)
 		return
 
 	library.get_mod_being_installed().queued_resource_modifications.erase(LICENSE_PATH)
@@ -33,4 +32,3 @@ func apply_license_extension_directly() -> void:
 	var extender = load(LICENSE_EXTENSION).new()
 	extender.modify_resource(_retained_license)
 	_retained_license.set_meta(APPLIED_META, true)
-	ModLoaderLog.info('Applied li_gms.tres_ext.gd directly, outside the shared extension queue.', MOD_ID)
